@@ -12,6 +12,10 @@ import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import frc.robot.commands.autonomous.AutoTest1;
+import frc.robot.commands.autonomous.AutoTest2;
+import frc.robot.commands.autonomous.AutoTest3;
+import frc.robot.commands.autonomous.AutoTest4;
 import frc.robot.subsystems.DriveTrain;
 
 /**
@@ -23,7 +27,9 @@ import frc.robot.subsystems.DriveTrain;
  */
 public class Robot extends TimedRobot {
   public static OI m_oi;
-	public static DriveTrain m_driveTrain;
+  public static DriveTrain m_driveTrain;
+  
+  Command m_autonomousCommand;
 
   /**
    * This function is run when the robot is first started up and should be
@@ -32,7 +38,7 @@ public class Robot extends TimedRobot {
   @Override
   public void robotInit() {
     m_oi = new OI();
-		m_driveTrain = new DriveTrain();
+    m_driveTrain = new DriveTrain();
   }
 
   /**
@@ -45,6 +51,7 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void robotPeriodic() {
+    m_driveTrain.updateStatus();
   }
 
   /**
@@ -76,6 +83,16 @@ public class Robot extends TimedRobot {
   public void autonomousInit() {
     m_driveTrain.resetAngle();
     m_driveTrain.resetEncoder();
+
+    int autoPositionSelector = m_oi.getAutoKnobPosition();
+
+    Command[] CommandsArray = {
+      new AutoTest1(),
+      new AutoTest2(),
+      new AutoTest3(),
+      new AutoTest4(),
+    };
+      m_autonomousCommand = CommandsArray[autoPositionSelector];
   }
 
   /**
@@ -91,6 +108,9 @@ public class Robot extends TimedRobot {
   public void teleopInit() {
     m_driveTrain.resetAngle();
     m_driveTrain.resetEncoder();
+    if (m_autonomousCommand != null) {
+      m_autonomousCommand.cancel();
+    }
   }
 
   /**
