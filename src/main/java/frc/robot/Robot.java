@@ -17,6 +17,7 @@ import frc.robot.commands.autonomous.AutoTest2;
 import frc.robot.commands.autonomous.AutoTest3;
 import frc.robot.commands.autonomous.AutoTest4;
 import frc.robot.subsystems.DriveTrain;
+import edu.wpi.first.wpilibj.DriverStation;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -93,6 +94,7 @@ public class Robot extends TimedRobot {
       new AutoTest4(),
     };
       m_autonomousCommand = CommandsArray[autoPositionSelector];
+      m_autonomousCommand.start();
   }
 
   /**

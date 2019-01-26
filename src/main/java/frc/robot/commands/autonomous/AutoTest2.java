@@ -8,7 +8,17 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 public class AutoTest2 extends CommandGroup {
 
     public AutoTest2() {
-    	//TEST OF CENTER S+S (R,R)
+		//TEST OF CENTER S+S (R,R)
+		addSequential(new DriveToDistance(-.4, 45, 15));
+		addSequential(new DriveForTime(0,0,2));
+
+		addSequential(new RotateToAngle(.4, 25, 15));
+		addSequential(new DriveForTime(0,0,2));
+
+		addSequential(new DriveToDistance(-.4, 100, 15));
+		
+
+		/*
     	addSequential(new DriveToDistance(-0.8, 15, 15.0));
     	//addSequential(new DriveForTime(0,0,0.5));
     	
@@ -44,6 +54,7 @@ public class AutoTest2 extends CommandGroup {
     	
     	addSequential(new DriveToDistance(-0.8, 57, 15.0));
     	//addSequential(new DriveForTime(0,0,2.0));
-    	//DUMP
+		//DUMP
+		*/
     }
 }
