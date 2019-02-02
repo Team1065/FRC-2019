@@ -54,6 +54,14 @@ public class OI {
     public boolean getRightJoystickTop(){
     	return rightJoystick.getTop();
     }
+
+    public boolean getRightJoystickTopRight(){
+        return rightJoystick.getRawButton(5);
+    }
+
+    public boolean getRightJoystickTopLeft(){
+        return rightJoystick.getRawButton(4);
+    }
     
     public boolean getLeftJoystickTop(){
     	return leftJoystick.getTop();
@@ -61,10 +69,6 @@ public class OI {
     
     public boolean getLeftJoystickTrigger(){
     	return leftJoystick.getTrigger();
-    }
-    
-    public boolean getIntakeOffSwitch(){
-    	return enhancedDS.getRawButton(RobotMap.INTAKE_OFF_PORT);
     }
     
     public boolean getCompressorOverride(){
@@ -91,12 +95,12 @@ public class OI {
     	return enhancedDS.getRawButton(RobotMap.ARM_SOLENOID_CONTROL_OVERRIDE);
     }
     
-    public boolean getShootingFast(){
-    	return enhancedDS.getRawButton(RobotMap.SHOOTING_FAST_PORT);
+    public boolean getIntakeIn(){
+    	return enhancedDS.getRawButton(RobotMap.INTAKE_IN_PORT);
     }
     
-    public boolean getShootingSlow(){
-    	return enhancedDS.getRawButton(RobotMap.SHOOTING_SLOW_PORT);
+    public boolean getIntakeOut(){
+    	return enhancedDS.getRawButton(RobotMap.INTAKE_OUT_PORT);
     }
     
     public int getAutoKnobPosition(){

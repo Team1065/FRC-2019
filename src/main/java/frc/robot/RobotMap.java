@@ -28,6 +28,12 @@ public class RobotMap {
                           LEFT_BACK_DRIVE_MOTOR_PORT = 2,
                           RIGHT_BACK_DRIVE_MOTOR_PORT = 3;
 
+ //CAN Ports
+  public static final int INTAKE_VICTOR_PORT = 1,
+                          INDEXER_MID_VICTOR_PORT = 2,
+                          INDEXER_TOP_VICTOR_PORT = 3,
+                          SHOOTER_VICTOR_PORT = 4;
+
   //PCM Ports
   public static final int DROPDOWN_SOLENOID_PORT = 1;
 
@@ -39,17 +45,17 @@ public class RobotMap {
   public static final int LEFT_JOYSTICK_PORT = 0,					//usb
                           RIGHT_JOYSTICK_PORT = 1,				//usb
                           ENHANCED_DS_PORT = 2,					//usb
-                          INTAKE_OFF_PORT = 1,	    			//Digital
+                          CLIMBER_EXTEND_PORT = 1,	    			//Digital
                           COMPRESSOR_CONTROL_OVERRIDE = 2,		//Digital
-                          SHOOTING_SLOW_PORT = 4,					//Digital
-                          SHOOTING_FAST_PORT = 5,					//Digital
-                          CLIMB_UP_PORT = 6,						//Digital
-                          CLIMB_DOWN_PORT = 8,					//Digital
-                          ARM_CONTROL_OVERRIDE = 9,				//Digital
-                          ARM_SOLENOID_CONTROL_OVERRIDE = 12,		//Digital
-                          SHOOTER_KNOB_PORT = 0,					//Analog
-                          AUTO_KNOB_PORT = 1,                     //Analog
-                          ARM_JOYSTICK_Y_PORT = 2;			    //Analog;					
+                          INTAKE_IN_PORT = 4,					//Digital
+                          INTAKE_OUT_PORT = 5,					//Digital
+                          CLIMB_UP_PORT = 6,						//Digital TODO
+                          CLIMB_DOWN_PORT = 8,					//Digital TODO
+                          ARM_CONTROL_OVERRIDE = 9,				//Digital TODO
+                          ARM_SOLENOID_CONTROL_OVERRIDE = 12,		//Digital TODO
+                          SHOOTER_KNOB_PORT = 0,					//Analog TODO
+                          AUTO_KNOB_PORT = 1,                     //Analog TODO
+                          ARM_JOYSTICK_Y_PORT = 2;			    //Analog;		TODO			
 
   public static final double  ARM_KNOB_POS_0 = 0.000,
                               ARM_KNOB_POS_1 = 0.024,

@@ -16,6 +16,7 @@ import frc.robot.commands.autonomous.AutoTest1;
 import frc.robot.commands.autonomous.AutoTest2;
 import frc.robot.commands.autonomous.AutoTest3;
 import frc.robot.commands.autonomous.AutoTest4;
+import frc.robot.subsystems.CargoHandler;
 import frc.robot.subsystems.DriveTrain;
 import edu.wpi.first.wpilibj.DriverStation;
 
@@ -29,6 +30,7 @@ import edu.wpi.first.wpilibj.DriverStation;
 public class Robot extends TimedRobot {
   public static OI m_oi;
   public static DriveTrain m_driveTrain;
+  public static CargoHandler m_cargoHandler;
   
   Command m_autonomousCommand;
 
@@ -40,6 +42,7 @@ public class Robot extends TimedRobot {
   public void robotInit() {
     m_oi = new OI();
     m_driveTrain = new DriveTrain();
+    m_cargoHandler = new CargoHandler();
   }
 
   /**
@@ -53,6 +56,7 @@ public class Robot extends TimedRobot {
   @Override
   public void robotPeriodic() {
     m_driveTrain.updateStatus();
+    m_cargoHandler.updateStatus();
   }
 
   /**
@@ -104,6 +108,7 @@ public class Robot extends TimedRobot {
   public void autonomousPeriodic() {
     Scheduler.getInstance().run();
     m_driveTrain.updateStatus();
+    m_cargoHandler.updateStatus();
   }
 
   @Override
@@ -122,6 +127,7 @@ public class Robot extends TimedRobot {
   public void teleopPeriodic() {
     Scheduler.getInstance().run();
     m_driveTrain.updateStatus();
+    m_cargoHandler.updateStatus();
   }
 
   /**
