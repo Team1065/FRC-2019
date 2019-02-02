@@ -110,7 +110,8 @@ public class CargoHandler extends Subsystem {
   }
 
   public boolean isCargoDetected(){
-    return cargoDetection.get();
+    return false;  // Byassed for testing
+   //return cargoDetection.get();
   }
 
   public void setIntake(double speed){
