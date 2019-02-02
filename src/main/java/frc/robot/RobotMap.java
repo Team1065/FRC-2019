@@ -32,14 +32,16 @@ public class RobotMap {
   public static final int INTAKE_VICTOR_PORT = 1,
                           INDEXER_MID_VICTOR_PORT = 2,
                           INDEXER_TOP_VICTOR_PORT = 3,
-                          SHOOTER_VICTOR_PORT = 4;
+                          SHOOTER_VICTOR_PORT = 4,
+                          ELEVATOR_TALON_PORT = 1;
 
   //PCM Ports
   public static final int DROPDOWN_SOLENOID_PORT = 1;
 
   //Digital Ports
   public static final int DRIVE_ENCODER_PORT_A = 0,
-                          DRIVE_ENCODER_PORT_B = 1;
+                          DRIVE_ENCODER_PORT_B = 1,
+                          CARGO_SWITCH_PORT = 2;
 
   //OI
   public static final int LEFT_JOYSTICK_PORT = 0,					//usb

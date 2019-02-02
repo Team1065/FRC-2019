@@ -55,6 +55,10 @@ public class OI {
     	return rightJoystick.getTop();
     }
 
+    public boolean getRightJoystickTopMiddle(){
+    	return rightJoystick.getRawButton(3);
+    }
+
     public boolean getRightJoystickTopRight(){
         return rightJoystick.getRawButton(5);
     }

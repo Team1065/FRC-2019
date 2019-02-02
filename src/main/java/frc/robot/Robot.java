@@ -12,10 +12,10 @@ import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-import frc.robot.commands.autonomous.AutoTest1;
-import frc.robot.commands.autonomous.AutoTest2;
-import frc.robot.commands.autonomous.AutoTest3;
-import frc.robot.commands.autonomous.AutoTest4;
+import frc.robot.commands.autonomous.RightRocket;
+import frc.robot.commands.autonomous.RightCargo;
+import frc.robot.commands.autonomous.LeftCargo;
+import frc.robot.commands.autonomous.LeftRocket;
 import frc.robot.subsystems.CargoHandler;
 import frc.robot.subsystems.DriveTrain;
 import edu.wpi.first.wpilibj.DriverStation;
@@ -92,10 +92,10 @@ public class Robot extends TimedRobot {
     int autoPositionSelector = m_oi.getAutoKnobPosition();
 
     Command[] CommandsArray = {
-      new AutoTest1(),
-      new AutoTest2(),
-      new AutoTest3(),
-      new AutoTest4(),
+      new LeftRocket(),
+      new LeftCargo(),
+      new RightCargo(),
+      new RightRocket(),
     };
       m_autonomousCommand = CommandsArray[autoPositionSelector];
       m_autonomousCommand.start();

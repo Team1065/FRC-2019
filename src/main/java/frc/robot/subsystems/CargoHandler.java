@@ -36,6 +36,8 @@ public class CargoHandler extends Subsystem {
     indexerTop.setInverted(false);
     shooter.setInverted(false);
 
+    cargoDetection = new DigitalInput(RobotMap.CARGO_SWITCH_PORT);
+    
     intakeState = IntakeState.OFF;
     shooterState = ShooterState.OFF;
   }
@@ -110,24 +112,23 @@ public class CargoHandler extends Subsystem {
   }
 
   public boolean isCargoDetected(){
-    return false;  // Byassed for testing
-   //return cargoDetection.get();
+   return !cargoDetection.get();
   }
 
   public void setIntake(double speed){
-      intake.set(ControlMode.PercentOutput, speed);
+    intake.set(ControlMode.PercentOutput, speed);
   }
 
   public void setIndexerMid(double speed){
-      intake.set(ControlMode.PercentOutput, speed);
+    indexerMid.set(ControlMode.PercentOutput, speed);
   }
 
   public void setIndexerTop(double speed){
-    intake.set(ControlMode.PercentOutput, speed);
+    indexerTop.set(ControlMode.PercentOutput, speed);
   }
 
   public void setShooter(double speed){
-    intake.set(ControlMode.PercentOutput, speed);
+    shooter.set(ControlMode.PercentOutput, speed);
   }
 
   public void setIntakeState (IntakeState state){
