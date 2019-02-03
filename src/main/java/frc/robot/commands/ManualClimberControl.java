@@ -12,7 +12,7 @@ import frc.robot.Robot;
 
 public class ManualClimberControl extends Command {
   public ManualClimberControl() {
-    equires(Robot.m_climber);
+    requires(Robot.m_climber);
   }
 
   // Called just before this Command runs the first time
