@@ -31,8 +31,8 @@ public class CargoHandler extends Subsystem {
     indexerTop = new VictorSPX(RobotMap.INDEXER_TOP_VICTOR_PORT);
     shooter = new VictorSPX(RobotMap.SHOOTER_VICTOR_PORT);
 
-    intake.setInverted(false);
-    indexerMid.setInverted(false);
+    intake.setInverted(true);
+    indexerMid.setInverted(true);
     indexerTop.setInverted(false);
     shooter.setInverted(false);
 
@@ -52,8 +52,8 @@ public class CargoHandler extends Subsystem {
     //INTAKE AND MIDDLE INDEXER
     if(intakeState == IntakeState.OFF){
       if(shooterState != ShooterState.OFF){
-        setIntake(1);
-        setIndexerMid(1);
+        setIntake(0.7);
+        setIndexerMid(0.7);
       }
       else{
         setIntake(0);

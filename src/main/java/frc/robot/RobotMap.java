@@ -17,20 +17,20 @@ public class RobotMap {
   //Shooter RPM values
   public static final double ELEVATOR_POS_0 = 0.0,//Cargo
                              ELEVATOR_POS_1 = 0.0,//Rocket Low
-                             ELEVATOR_POS_2 = 500.0,//Rocket Mid
-                             ELEVATOR_POS_3 = 1000.0,//Rocket High
-                             ELEVATOR_POS_4 = 1000.0,//Rocket High
-                             ELEVATOR_POS_5 = 1000.0;//Rocket High
+                             ELEVATOR_POS_2 = 10000.0,//Rocket Mid
+                             ELEVATOR_POS_3 = 20000.0,//Rocket High
+                             ELEVATOR_POS_4 = 20000.0,//Rocket High
+                             ELEVATOR_POS_5 = 20000.0;//Rocket High
 
   //PID Constants
   public static final double MECANUM_STRAIGHT_DRIVE_P = 0.023,
                              ELEVATOR_F = 0,
-                             ELEVATOR_P = 0.8,
-                             ELEVATOR_I = 0.015,
+                             ELEVATOR_P = 0.005,
+                             ELEVATOR_I = 0,
                              ELEVATOR_D = 0;
 
   //Int Constants
-  public static final int ELEVATOR_ERROR = 35;//4098 is 1 full rotation
+  public static final int ELEVATOR_ERROR = 2000;//4098 is 1 full rotation
 
   //Double Constants
   public static final double JOYSTICK_DEADBAND = 0.05,
