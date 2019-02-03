@@ -17,7 +17,9 @@ import frc.robot.commands.autonomous.RightCargo;
 import frc.robot.commands.autonomous.LeftCargo;
 import frc.robot.commands.autonomous.LeftRocket;
 import frc.robot.subsystems.CargoHandler;
+import frc.robot.subsystems.Climber;
 import frc.robot.subsystems.DriveTrain;
+import frc.robot.subsystems.Elevator;
 import edu.wpi.first.wpilibj.DriverStation;
 
 /**
@@ -31,6 +33,8 @@ public class Robot extends TimedRobot {
   public static OI m_oi;
   public static DriveTrain m_driveTrain;
   public static CargoHandler m_cargoHandler;
+  public static Elevator m_elevator;
+  public static Climber m_climber;
   
   Command m_autonomousCommand;
 
@@ -43,6 +47,8 @@ public class Robot extends TimedRobot {
     m_oi = new OI();
     m_driveTrain = new DriveTrain();
     m_cargoHandler = new CargoHandler();
+    m_elevator = new Elevator();
+    m_climber = new Climber();
   }
 
   /**
@@ -57,6 +63,8 @@ public class Robot extends TimedRobot {
   public void robotPeriodic() {
     m_driveTrain.updateStatus();
     m_cargoHandler.updateStatus();
+    m_elevator.updateStatus();
+    m_climber.updateStatus();
   }
 
   /**
@@ -107,8 +115,6 @@ public class Robot extends TimedRobot {
   @Override
   public void autonomousPeriodic() {
     Scheduler.getInstance().run();
-    m_driveTrain.updateStatus();
-    m_cargoHandler.updateStatus();
   }
 
   @Override
@@ -126,8 +132,6 @@ public class Robot extends TimedRobot {
   @Override
   public void teleopPeriodic() {
     Scheduler.getInstance().run();
-    m_driveTrain.updateStatus();
-    m_cargoHandler.updateStatus();
   }
 
   /**

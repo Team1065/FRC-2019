@@ -79,24 +79,20 @@ public class OI {
     	return enhancedDS.getRawButton(RobotMap.COMPRESSOR_CONTROL_OVERRIDE);
     }
     
-    public boolean getClimberUpSwitch(){
-    	return enhancedDS.getRawButton(RobotMap.CLIMB_UP_PORT);
+    public boolean getArmUpSwitch(){
+    	return enhancedDS.getRawButton(RobotMap.ARM_UP_PORT);
     }
     
-    public boolean getClimberDownSwitch(){
-    	return enhancedDS.getRawButton(RobotMap.CLIMB_DOWN_PORT);
+    public boolean getArmDownSwitch(){
+    	return enhancedDS.getRawButton(RobotMap.ARM_DOWN_PORT);
     }
     
-    public double getArmStickY(){
-    	return enhancedDS.getRawAxis(RobotMap.ARM_JOYSTICK_Y_PORT);
+    public double getElevatorStickY(){
+    	return enhancedDS.getRawAxis(RobotMap.ELEVATOR_JOYSTICK_Y_PORT);
     }
     
-    public boolean getArmOverride(){
-    	return enhancedDS.getRawButton(RobotMap.ARM_CONTROL_OVERRIDE);
-    }
-    
-    public boolean getArmExtendedOverride(){
-    	return enhancedDS.getRawButton(RobotMap.ARM_SOLENOID_CONTROL_OVERRIDE);
+    public boolean getElevatorOverride(){
+    	return enhancedDS.getRawButton(RobotMap.ELEVATOR_CONTROL_OVERRIDE);
     }
     
     public boolean getIntakeIn(){
@@ -106,6 +102,47 @@ public class OI {
     public boolean getIntakeOut(){
     	return enhancedDS.getRawButton(RobotMap.INTAKE_OUT_PORT);
     }
+
+    public boolean getClimberExtend(){
+    	return enhancedDS.getRawButton(RobotMap.CLIMBER_EXTEND_PORT);
+    }
+
+    public double getElevatorDesiredPosition(){
+    	double position;
+		double knobValue = enhancedDS.getRawAxis(RobotMap.ELEVATOR_KNOB_PORT);
+		double threshold = 0.011;
+		
+		//If Station Knob is at 0
+		if(knobValue < RobotMap.ELEVATOR_KNOB_POS_0 + threshold){
+			position = RobotMap.ELEVATOR_POS_0;
+        }
+        //If Station Knob is at 1
+        else if(knobValue >= RobotMap.ELEVATOR_KNOB_POS_1 - threshold && knobValue < RobotMap.ELEVATOR_KNOB_POS_1 + threshold){
+        	position = RobotMap.ELEVATOR_POS_1;
+        }
+        //If Station Knob is at 2
+        else if(knobValue >= RobotMap.ELEVATOR_KNOB_POS_2 - threshold && knobValue < RobotMap.ELEVATOR_KNOB_POS_2 + threshold){
+        	position = RobotMap.ELEVATOR_POS_2;
+        }
+        //If Station Knob is at 3
+        else if(knobValue >= RobotMap.ELEVATOR_KNOB_POS_3 - threshold && knobValue < RobotMap.ELEVATOR_KNOB_POS_3 + threshold){
+        	position = RobotMap.ELEVATOR_POS_3;
+        }
+        //If Station Knob is at 4
+        else if(knobValue >= RobotMap.ELEVATOR_KNOB_POS_4 - threshold && knobValue < RobotMap.ELEVATOR_KNOB_POS_4 + threshold){
+        	position = RobotMap.ELEVATOR_POS_4;
+        }
+        //If Station Knob is at 5
+        else if(knobValue >= RobotMap.ELEVATOR_KNOB_POS_5 - threshold){
+        	position = RobotMap.ELEVATOR_POS_5;
+        }
+        else
+        {
+        	position = RobotMap.ELEVATOR_POS_0;
+        }
+		
+		return position;
+	}
     
     public int getAutoKnobPosition(){
     	int position;

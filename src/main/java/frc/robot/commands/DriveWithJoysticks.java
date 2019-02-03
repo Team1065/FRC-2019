@@ -15,6 +15,11 @@ public class DriveWithJoysticks extends Command {
     }
 
     protected void execute() {
+		if (Robot.m_oi.getClimberExtend()){
+			Robot.m_driveTrain.tankDrive(0, 0);
+			return;
+		}
+
     	double leftY = Robot.m_oi.getLeftJoystickY();
     	double rightY = Robot.m_oi.getRightJoystickY();
     	double rightX = Robot.m_oi.getRightJoystickX();
