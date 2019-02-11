@@ -11,6 +11,7 @@ import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
+import edu.wpi.first.wpilibj.DigitalInput;
 import frc.robot.commands.autonomous.RightRocket;
 import frc.robot.commands.autonomous.RightCargo;
 import frc.robot.commands.autonomous.LeftCargo;
@@ -33,6 +34,8 @@ public class Robot extends TimedRobot {
   public static CargoHandler m_cargoHandler;
   public static Elevator m_elevator;
   public static Climber m_climber;
+  public static DigitalInput m_autoModeSwitch;
+  public static DigitalInput m_autoSideSwitch;
   
   Command m_autonomousCommand;
 
@@ -47,6 +50,9 @@ public class Robot extends TimedRobot {
     m_cargoHandler = new CargoHandler();
     m_elevator = new Elevator();
     m_climber = new Climber();
+
+    m_autoModeSwitch = new DigitalInput(RobotMap.AUTO_MODE_SWITCH_PORT);
+    m_autoSideSwitch = new DigitalInput(RobotMap.AUTO_SIDE_SWITCH_PORT);
   }
 
   /**
@@ -97,14 +103,24 @@ public class Robot extends TimedRobot {
 
     int autoPositionSelector = m_oi.getAutoKnobPosition();
 
-    Command[] CommandsArray = {
+    /*Command[] CommandsArray = {
       new LeftRocket(),
       new LeftCargo(),
       new RightCargo(),
       new RightRocket(),
     };
       m_autonomousCommand = CommandsArray[autoPositionSelector];
-      m_autonomousCommand.start();
+      m_autonomousCommand.start();*/
+
+      if (m_autoModeSwitch.get() & m_autoSideSwitch.get()){ // Right Rocket
+        new RightRocket();
+      }else if (m_autoModeSwitch.get() & !m_autoSideSwitch.get()){ // Left Rockwt
+        new LeftRocket();
+      }else if (!m_autoModeSwitch.get() & m_autoSideSwitch.get()){ // Right Cargo
+        new RightCargo();
+      }else if (!m_autoModeSwitch.get() & !m_autoSideSwitch.get()){ // Left Cargo
+        new LeftCargo();
+      }
   }
 
   /**

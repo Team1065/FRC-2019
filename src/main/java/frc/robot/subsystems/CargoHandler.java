@@ -13,6 +13,8 @@ import com.ctre.phoenix.motorcontrol.can.VictorSPX;
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import frc.robot.OI;
+import frc.robot.Robot;
 import frc.robot.RobotMap;
 import frc.robot.commands.ManualCargoHandlerControl;
 
@@ -34,7 +36,7 @@ public class CargoHandler extends Subsystem {
     intake.setInverted(true);
     indexerMid.setInverted(true);
     indexerTop.setInverted(false);
-    shooter.setInverted(false);
+    shooter.setInverted(true);
 
     cargoDetection = new DigitalInput(RobotMap.CARGO_SWITCH_PORT);
     
@@ -85,6 +87,16 @@ public class CargoHandler extends Subsystem {
       }
     }
 
+    //Really dirty code
+    double[][] shooterConfigs = {
+       new double[] {0.5,0.5}, //shooter, indexerTop
+       new double[] {0.6,0.0}, //shooter, indexerTop
+       new double[] {0.7,0.7}, //shooter, indexerTop
+       new double[] {1,0.7} //shooter, indexerTop
+    };
+
+    int shooterConfigSelector = Robot.m_oi.getAutoKnobPosition();
+
     //TOP INDEXER AND SHOOTER
     if(shooterState == ShooterState.OFF){
       setShooter(0);
@@ -102,12 +114,12 @@ public class CargoHandler extends Subsystem {
       setIndexerMid(-1);
     }
     else if(shooterState == ShooterState.LEFT){
-      setShooter(1);
-      setIndexerTop(1);
+      setShooter(-1);
+      setIndexerTop(0.7);
     }
     else if(shooterState == ShooterState.RIGHT){
-      setShooter(-1);
-      setIndexerTop(1);
+      setShooter(shooterConfigs[shooterConfigSelector][0]);
+      setIndexerTop(shooterConfigs[shooterConfigSelector][1]);
     }
   }
 

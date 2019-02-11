@@ -14,7 +14,7 @@ package frc.robot;
  * floating around.
  */
 public class RobotMap {
-  //Shooter RPM values
+  //Elevator positions
   public static final double ELEVATOR_POS_0 = 0.0,//Cargo
                              ELEVATOR_POS_1 = 0.0,//Rocket Low
                              ELEVATOR_POS_2 = 10000.0,//Rocket Mid
@@ -65,7 +65,9 @@ public class RobotMap {
                           ELEVATOR_BOTTOM_LIMIT_PORT = 3,
                           ELEVATOR_TOP_LIMIT_PORT = 4,
                           CLIMBER_BOTTOM_LIMIT_PORT = 5,
-                          CLIMBER_TOP_LIMIT_PORT = 6;
+                          CLIMBER_TOP_LIMIT_PORT = 6,
+                          AUTO_SIDE_SWITCH_PORT = 7, // On = Right Off = Left
+                          AUTO_MODE_SWITCH_PORT = 8; // On = rocket Off = Cargo
 
   //OI
   public static final int LEFT_JOYSTICK_PORT = 0,					//usb
