@@ -8,6 +8,7 @@
 package frc.robot.subsystems;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
+import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 import com.ctre.phoenix.motorcontrol.can.VictorSPX;
 
 import edu.wpi.first.wpilibj.DigitalInput;
@@ -22,7 +23,8 @@ public class CargoHandler extends Subsystem {
   public enum IntakeState{OFF, IN, OUT};
   public enum ShooterState{OFF, FRONT, RIGHT, LEFT};
 
-  private VictorSPX intake, indexerMid, indexerTop, shooter;
+  private VictorSPX intake, indexerMid, indexerTop;
+  private TalonSRX shooter;
   private DigitalInput cargoDetection;
   private IntakeState intakeState;
   private ShooterState shooterState;
@@ -31,12 +33,12 @@ public class CargoHandler extends Subsystem {
     intake = new VictorSPX(RobotMap.INTAKE_VICTOR_PORT);
     indexerMid = new VictorSPX(RobotMap.INDEXER_MID_VICTOR_PORT);
     indexerTop = new VictorSPX(RobotMap.INDEXER_TOP_VICTOR_PORT);
-    shooter = new VictorSPX(RobotMap.SHOOTER_VICTOR_PORT);
+    shooter = new TalonSRX(RobotMap.SHOOTER_TALON_PORT);
 
     intake.setInverted(true);
     indexerMid.setInverted(true);
-    indexerTop.setInverted(false);
-    shooter.setInverted(true);
+    //indexerTop.setInverted(false);
+    shooter.setInverted(false);
 
     cargoDetection = new DigitalInput(RobotMap.CARGO_SWITCH_PORT);
     
@@ -64,16 +66,16 @@ public class CargoHandler extends Subsystem {
     }
     else if(intakeState == IntakeState.IN){
       if(shooterState != ShooterState.OFF){
-        setIntake(1);
-        setIndexerMid(1);
+        setIntake(0.6);
+        setIndexerMid(0.6);
       }
       else if(isCargoDetected()){
         setIntake(-0.8);
         setIndexerMid(0);
       }
       else{
-        setIntake(1);
-        setIndexerMid(0.7);
+        setIntake(0.6);
+        setIndexerMid(0.6);
       }
     }
     else if(intakeState == IntakeState.OUT){
@@ -88,11 +90,11 @@ public class CargoHandler extends Subsystem {
     }
 
     //Really dirty code
-    double[][] shooterConfigs = {
-       new double[] {0.5,0.5}, //shooter, indexerTop
-       new double[] {0.6,0.0}, //shooter, indexerTop
-       new double[] {0.7,0.7}, //shooter, indexerTop
-       new double[] {1,0.7} //shooter, indexerTop
+    double[] shooterConfigs = {
+      0.50,
+      0.60,
+      0.75,
+      0.90,
     };
 
     int shooterConfigSelector = Robot.m_oi.getAutoKnobPosition();
@@ -104,22 +106,22 @@ public class CargoHandler extends Subsystem {
         setIndexerTop(-1);
       }
       else{
-        setIndexerTop(0);
+        //setIndexerTop(0);
       }
     }
     else if(shooterState == ShooterState.FRONT){
       setShooter(0);
-      setIndexerTop(0);
+      //setIndexerTop(0);
       setIntake(1);
       setIndexerMid(-1);
     }
     else if(shooterState == ShooterState.LEFT){
       setShooter(-1);
-      setIndexerTop(0.7);
+      //setIndexerTop(0.7);
     }
     else if(shooterState == ShooterState.RIGHT){
-      setShooter(shooterConfigs[shooterConfigSelector][0]);
-      setIndexerTop(shooterConfigs[shooterConfigSelector][1]);
+      setShooter(shooterConfigs[shooterConfigSelector]);
+      //setIndexerTop(shooterConfigs[shooterConfigSelector]);
     }
   }
 

@@ -18,30 +18,38 @@ import frc.robot.RobotMap;
 import frc.robot.commands.ManualElevatorControl;
 
 public class Elevator extends Subsystem {
-  private TalonSRX talon;
+  private TalonSRX masterTalon, slaveTalon;
   private DigitalInput bottomLimit, topLimit;
 
   public Elevator (){
     bottomLimit = new DigitalInput(RobotMap.ELEVATOR_BOTTOM_LIMIT_PORT);
     topLimit = new DigitalInput(RobotMap.ELEVATOR_TOP_LIMIT_PORT);
 
-    talon = new TalonSRX(RobotMap.ELEVATOR_TALON_PORT);
+    masterTalon = new TalonSRX(RobotMap.ELEVATOR_MASTER_TALON_PORT);
+    slaveTalon = new TalonSRX(RobotMap.ELEVATOR_SLAVE_TALON_PORT);
 
-    talon.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative, 0, 0);
-		talon.setSensorPhase(true);
-		talon.setInverted(true);
-		talon.configNominalOutputForward(0.0, 0);
-		talon.configNominalOutputReverse(-0.0, 0);
-		talon.configPeakOutputForward(1, 0);
-		talon.configPeakOutputReverse(-1, 0);
-		talon.configAllowableClosedloopError(0, RobotMap.ELEVATOR_ERROR, 0);
-		talon.config_kF(0, RobotMap.ELEVATOR_F, 0);
-		talon.config_kP(0, RobotMap.ELEVATOR_P, 0);
-		talon.config_kI(0, RobotMap.ELEVATOR_I, 0);
-		talon.config_kD(0, RobotMap.ELEVATOR_D, 0);
+    slaveTalon.follow(masterTalon);
+		slaveTalon.setInverted(true);
+		slaveTalon.configNominalOutputForward(0.0, 0);
+		slaveTalon.configNominalOutputReverse(-0.0, 0);
+		slaveTalon.configPeakOutputForward(1, 0);
+		slaveTalon.configPeakOutputReverse(-1, 0);
+
+    masterTalon.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative, 0, 0);
+		masterTalon.setSensorPhase(true);
+		masterTalon.setInverted(true);
+		masterTalon.configNominalOutputForward(0.0, 0);
+		masterTalon.configNominalOutputReverse(-0.0, 0);
+		masterTalon.configPeakOutputForward(1, 0);
+		masterTalon.configPeakOutputReverse(-1, 0);
+		masterTalon.configAllowableClosedloopError(0, RobotMap.ELEVATOR_ERROR, 0);
+		masterTalon.config_kF(0, RobotMap.ELEVATOR_F, 0);
+		masterTalon.config_kP(0, RobotMap.ELEVATOR_P, 0);
+		masterTalon.config_kI(0, RobotMap.ELEVATOR_I, 0);
+		masterTalon.config_kD(0, RobotMap.ELEVATOR_D, 0);
 		
 		//There is an option to get the absolute value from the CTR sensor but we will just zero it out for now
-		talon.setSelectedSensorPosition(0, 0, 0);
+		masterTalon.setSelectedSensorPosition(0, 0, 0);
   }
 
   @Override
@@ -51,37 +59,37 @@ public class Elevator extends Subsystem {
 
   public void setPosition(double position) {
     //assume normally open switches
-    if(position < talon.getSelectedSensorPosition(0) && !bottomLimit.get()) {
-      talon.set(ControlMode.PercentOutput, 0);
-      talon.setSelectedSensorPosition(0, 0, 0);
+    if(position < masterTalon.getSelectedSensorPosition(0) && !bottomLimit.get()) {
+      masterTalon.set(ControlMode.PercentOutput, 0);
+      masterTalon.setSelectedSensorPosition(0, 0, 0);
     }
-    else if (position > talon.getSelectedSensorPosition(0) && !topLimit.get()) {
-      talon.set(ControlMode.PercentOutput, 0);
+    else if (position > masterTalon.getSelectedSensorPosition(0) && !topLimit.get()) {
+      masterTalon.set(ControlMode.PercentOutput, 0);
     }
     else{
-      talon.set(ControlMode.Position,position);
+      masterTalon.set(ControlMode.Position,position);
     }
   }
 
   public void setVoltage(double speed) {
     //assume normally open switches
     if((speed < 0 && !bottomLimit.get()) || (speed > 0 && !topLimit.get())){
-      talon.set(ControlMode.PercentOutput, 0);
+      masterTalon.set(ControlMode.PercentOutput, 0);
     }
     else{
-      talon.set(ControlMode.PercentOutput, speed);
+      masterTalon.set(ControlMode.PercentOutput, speed);
     }
   }
   
   public boolean isOnTarget(){
-    return talon.getClosedLoopError(0) < RobotMap.ELEVATOR_ERROR;
+    return masterTalon.getClosedLoopError(0) < RobotMap.ELEVATOR_ERROR;
   }
   
   public void updateStatus(){
-    SmartDashboard.putNumber("Elevator Talon Motor Speed", talon.getMotorOutputPercent());
-    SmartDashboard.putNumber("Elevator Setpoint", talon.getClosedLoopTarget(0));
-    SmartDashboard.putNumber("Elevator Error", talon.getClosedLoopError(0));
-    SmartDashboard.putNumber("Elevator Position", talon.getSelectedSensorPosition(0));
+    SmartDashboard.putNumber("Elevator Talon Motor Speed", masterTalon.getMotorOutputPercent());
+    SmartDashboard.putNumber("Elevator Setpoint", masterTalon.getClosedLoopTarget(0));
+    SmartDashboard.putNumber("Elevator Error", masterTalon.getClosedLoopError(0));
+    SmartDashboard.putNumber("Elevator Position", masterTalon.getSelectedSensorPosition(0));
     SmartDashboard.putBoolean("Elevator on Target", isOnTarget());
     SmartDashboard.putBoolean("Elevator Bottom Limit", !bottomLimit.get());
     SmartDashboard.putBoolean("Elevator Top Limit", !topLimit.get());

@@ -27,10 +27,15 @@ public class RobotMap {
                              ELEVATOR_F = 0,
                              ELEVATOR_P = 0.005,
                              ELEVATOR_I = 0,
-                             ELEVATOR_D = 0;
+                             ELEVATOR_D = 0,
+                             SHOOTER_F = 0,
+                             SHOOTER_P = 100.0,
+                             SHOOTER_I = 0,
+                             SHOOTER_D = 0;
 
   //Int Constants
-  public static final int ELEVATOR_ERROR = 2000;//4098 is 1 full rotation
+  public static final int ELEVATOR_ERROR = 2000,
+                          SHOOTER_ERROR = 2000;//4098 is 1 full rotation
 
   //Double Constants
   public static final double JOYSTICK_DEADBAND = 0.05,
@@ -51,15 +56,22 @@ public class RobotMap {
   public static final int INTAKE_VICTOR_PORT = 1,
                           INDEXER_MID_VICTOR_PORT = 2,
                           INDEXER_TOP_VICTOR_PORT = 3,
-                          SHOOTER_VICTOR_PORT = 4,
-                          ELEVATOR_TALON_PORT = 1;
+                          ELEVATOR_MASTER_TALON_PORT = 1,
+                          ELEVATOR_SLAVE_TALON_PORT = 2,
+                          SHOOTER_TALON_PORT = 3;
 
   //PCM Ports
   public static final int DROPDOWN_SOLENOID_PORT = 1,
-                          CLIMBER_SOLENOID_PORT = 2;
+                          FROMT_CLIMBER_SOLENOID_PORT = 2,
+                          BACK_CLIMBER_SOLENOID_PORT = 3,
+                          ARM_SOLENOID_PORT = 4,
+                          GRABBER_SOLENOID_PORT = 5,
+                          HOOD_SOLENOID_PORT = 6,
+                          SHOOTER_LIGHT_PORT = 7;
+                          
 
   //Digital Ports
-  public static final int DRIVE_ENCODER_PORT_A = 0,
+  public static final int DRIVE_ENCODER_PORT_A = 0, 
                           DRIVE_ENCODER_PORT_B = 1,
                           CARGO_SWITCH_PORT = 2,
                           ELEVATOR_BOTTOM_LIMIT_PORT = 3,
@@ -67,7 +79,8 @@ public class RobotMap {
                           CLIMBER_BOTTOM_LIMIT_PORT = 5,
                           CLIMBER_TOP_LIMIT_PORT = 6,
                           AUTO_SIDE_SWITCH_PORT = 7, // On = Right Off = Left
-                          AUTO_MODE_SWITCH_PORT = 8; // On = rocket Off = Cargo
+                          AUTO_MODE_SWITCH_PORT = 8, // On = rocket Off = Cargo
+                          SHOOTER_ENCODER_PORT = 9; 
 
   //OI
   public static final int LEFT_JOYSTICK_PORT = 0,					//usb

@@ -17,12 +17,13 @@ import frc.robot.commands.ManualClimberControl;
 
 public class Climber extends Subsystem {
   private Talon backMotors;
-  private Solenoid frontActuator;
+  private Solenoid frontActuator, backActuator;
   private DigitalInput backBottomLimit, backTopLimit;
 
   public Climber() {
     backMotors = new Talon(RobotMap.CLIMBER_MOTORS_PORT);
-    frontActuator = new Solenoid(RobotMap.CLIMBER_SOLENOID_PORT);
+    frontActuator = new Solenoid(RobotMap.FROMT_CLIMBER_SOLENOID_PORT);
+    backActuator = new Solenoid(RobotMap.BACK_CLIMBER_SOLENOID_PORT);
     backBottomLimit = new DigitalInput(RobotMap.CLIMBER_BOTTOM_LIMIT_PORT);
     backTopLimit = new DigitalInput(RobotMap.CLIMBER_TOP_LIMIT_PORT);
   }

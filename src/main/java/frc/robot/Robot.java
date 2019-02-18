@@ -11,6 +11,7 @@ import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj.DigitalInput;
 import frc.robot.commands.autonomous.RightRocket;
 import frc.robot.commands.autonomous.RightCargo;
@@ -18,8 +19,10 @@ import frc.robot.commands.autonomous.LeftCargo;
 import frc.robot.commands.autonomous.LeftRocket;
 import frc.robot.subsystems.CargoHandler;
 import frc.robot.subsystems.Climber;
+import frc.robot.subsystems.Arm;
 import frc.robot.subsystems.DriveTrain;
 import frc.robot.subsystems.Elevator;
+import edu.wpi.first.wpilibj.Compressor;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -34,8 +37,10 @@ public class Robot extends TimedRobot {
   public static CargoHandler m_cargoHandler;
   public static Elevator m_elevator;
   public static Climber m_climber;
+  public static Arm m_arm;
   public static DigitalInput m_autoModeSwitch;
   public static DigitalInput m_autoSideSwitch;
+  public static Compressor m_compressor;
   
   Command m_autonomousCommand;
 
@@ -50,6 +55,8 @@ public class Robot extends TimedRobot {
     m_cargoHandler = new CargoHandler();
     m_elevator = new Elevator();
     m_climber = new Climber();
+    m_arm = new Arm();
+    m_compressor = new Compressor();
 
     m_autoModeSwitch = new DigitalInput(RobotMap.AUTO_MODE_SWITCH_PORT);
     m_autoSideSwitch = new DigitalInput(RobotMap.AUTO_SIDE_SWITCH_PORT);
@@ -101,7 +108,7 @@ public class Robot extends TimedRobot {
     m_driveTrain.resetAngle();
     m_driveTrain.resetEncoder();
 
-    int autoPositionSelector = m_oi.getAutoKnobPosition();
+    //int autoPositionSelector = m_oi.getAutoKnobPosition();
 
     /*Command[] CommandsArray = {
       new LeftRocket(),
@@ -146,6 +153,11 @@ public class Robot extends TimedRobot {
   @Override
   public void teleopPeriodic() {
     Scheduler.getInstance().run();
+    if(m_oi.getCompressorOverride()){
+			m_compressor.setClosedLoopControl(false);
+    }else{
+      m_compressor.setClosedLoopControl(true);
+    }
   }
 
   /**
