@@ -41,8 +41,8 @@ public class ManualCargoHandlerControl extends Command {
       Robot.m_cargoHandler.setShooterState(ShooterState.FRONT);
     }
     else if(Robot.m_oi.getRightJoystickTrigger() && Robot.m_oi.getRightJoystickTopLeft()){
-      Robot.m_cargoHandler.setShooterState(ShooterState.LEFT);
-      //Robot.m_cargoHandler.setShooterState(ShooterState.OFF);
+      //Robot.m_cargoHandler.setShooterState(ShooterState.LEFT);
+      Robot.m_cargoHandler.setShooterState(ShooterState.OFF);
     }
     else if(Robot.m_oi.getRightJoystickTrigger() && Robot.m_oi.getRightJoystickTopRight()){
       Robot.m_cargoHandler.setShooterState(ShooterState.RIGHT);
