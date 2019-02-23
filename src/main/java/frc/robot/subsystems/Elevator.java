@@ -84,6 +84,10 @@ public class Elevator extends Subsystem {
   public boolean isOnTarget(){
     return masterTalon.getClosedLoopError(0) < RobotMap.ELEVATOR_ERROR;
   }
+
+  public boolean getBottomLimit(){
+    return bottomLimit.get();
+  }
   
   public void updateStatus(){
     SmartDashboard.putNumber("Elevator Talon Motor Speed", masterTalon.getMotorOutputPercent());

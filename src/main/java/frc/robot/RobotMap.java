@@ -50,7 +50,8 @@ public class RobotMap {
                           RIGHT_FRONT_DRIVE_MOTOR_PORT = 1,
                           LEFT_BACK_DRIVE_MOTOR_PORT = 2,
                           RIGHT_BACK_DRIVE_MOTOR_PORT = 3,
-                          CLIMBER_MOTORS_PORT = 4;
+                          CLIMBER_MOTORS_PORT = 4,
+                          CAMERA_SERVO_PORT = 5;
 
  //CAN Ports
   public static final int INTAKE_VICTOR_PORT = 1,
@@ -60,7 +61,7 @@ public class RobotMap {
                           ELEVATOR_SLAVE_TALON_PORT = 2,
                           SHOOTER_TALON_PORT = 3;
 
-  //PCM Ports
+  //PCM 1 Ports
   public static final int DROPDOWN_SOLENOID_PORT = 1,
                           FROMT_CLIMBER_SOLENOID_PORT = 2,
                           BACK_CLIMBER_SOLENOID_PORT = 3,
@@ -68,6 +69,12 @@ public class RobotMap {
                           GRABBER_SOLENOID_PORT = 5,
                           HOOD_SOLENOID_PORT = 6,
                           SHOOTER_LIGHT_PORT = 7;
+
+  //PCM 2 Ports
+  public static final int CARGO_LED_PORT = 0,
+                          LED2_PORT = 1,
+                          LED3_PORT = 2,
+                          LED4_PORT = 3;
                           
 
   //Digital Ports
@@ -96,7 +103,8 @@ public class RobotMap {
                           ELEVATOR_SOLENOID_CONTROL_OVERRIDE = 12,		//Digital TODO
                           ELEVATOR_KNOB_PORT = 0,					//Analog TODO
                           AUTO_KNOB_PORT = 1,                     //Analog TODO
-                          ELEVATOR_JOYSTICK_Y_PORT = 2;			    //Analog;		TODO			
+                          ELEVATOR_JOYSTICK_Y_PORT = 2,			    //Analog;		TODO			
+                          CAMERA_JOYSTICK_X_PORT = 4;			    //Analog;		TODO			
 
   public static final double  ELEVATOR_KNOB_POS_0 = 0.000,
                               ELEVATOR_KNOB_POS_1 = 0.024,

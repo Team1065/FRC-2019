@@ -21,6 +21,8 @@ import frc.robot.subsystems.CargoHandler;
 import frc.robot.subsystems.Climber;
 import frc.robot.subsystems.Arm;
 import frc.robot.subsystems.DriveTrain;
+import frc.robot.subsystems.Lights;
+import frc.robot.subsystems.VisionSystem;
 import frc.robot.subsystems.Elevator;
 import edu.wpi.first.wpilibj.Compressor;
 
@@ -38,6 +40,8 @@ public class Robot extends TimedRobot {
   public static Elevator m_elevator;
   public static Climber m_climber;
   public static Arm m_arm;
+  public static Lights m_lighting;
+  public static VisionSystem m_vision;
   public static DigitalInput m_autoModeSwitch;
   public static DigitalInput m_autoSideSwitch;
   public static Compressor m_compressor;
@@ -57,6 +61,8 @@ public class Robot extends TimedRobot {
     m_climber = new Climber();
     m_arm = new Arm();
     m_compressor = new Compressor();
+    m_lighting = new Lights();
+    m_vision = new VisionSystem();
 
     m_autoModeSwitch = new DigitalInput(RobotMap.AUTO_MODE_SWITCH_PORT);
     m_autoSideSwitch = new DigitalInput(RobotMap.AUTO_SIDE_SWITCH_PORT);

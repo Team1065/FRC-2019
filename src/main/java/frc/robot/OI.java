@@ -90,6 +90,10 @@ public class OI {
     public double getElevatorStickY(){
     	return enhancedDS.getRawAxis(RobotMap.ELEVATOR_JOYSTICK_Y_PORT);
     }
+
+    public double getCameraStickX(){
+        return enhancedDS.getRawAxis(RobotMap.CAMERA_JOYSTICK_X_PORT);
+    }
     
     public boolean getElevatorOverride(){
     	return enhancedDS.getRawButton(RobotMap.ELEVATOR_CONTROL_OVERRIDE);
