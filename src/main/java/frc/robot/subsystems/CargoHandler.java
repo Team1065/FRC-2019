@@ -14,8 +14,6 @@ import com.ctre.phoenix.motorcontrol.can.VictorSPX;
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-import frc.robot.OI;
-import frc.robot.Robot;
 import frc.robot.RobotMap;
 import frc.robot.commands.ManualCargoHandlerControl;
 
@@ -28,6 +26,7 @@ public class CargoHandler extends Subsystem {
   private DigitalInput cargoDetection;
   private IntakeState intakeState;
   private ShooterState shooterState;
+  private double shootingSpeed;
 
   public CargoHandler(){
     intake = new VictorSPX(RobotMap.INTAKE_VICTOR_PORT);
@@ -44,6 +43,7 @@ public class CargoHandler extends Subsystem {
     
     intakeState = IntakeState.OFF;
     shooterState = ShooterState.OFF;
+    shootingSpeed = 0.5;
   }
 
   @Override
@@ -89,16 +89,6 @@ public class CargoHandler extends Subsystem {
       }
     }
 
-    //Really dirty code
-    double[] shooterConfigs = {
-      0.50,
-      0.60,
-      0.75,
-      0.90,
-    };
-
-    int shooterConfigSelector = Robot.m_oi.getAutoKnobPosition();
-
     //TOP INDEXER AND SHOOTER
     if(shooterState == ShooterState.OFF){
       setShooter(0);
@@ -116,11 +106,11 @@ public class CargoHandler extends Subsystem {
       setIndexerMid(-1);
     }
     else if(shooterState == ShooterState.LEFT){
-      setShooter(-1);
+      setShooter(-shootingSpeed);
       //setIndexerTop(0.7);
     }
     else if(shooterState == ShooterState.RIGHT){
-      setShooter(shooterConfigs[shooterConfigSelector]);
+      setShooter(shootingSpeed);
       //setIndexerTop(shooterConfigs[shooterConfigSelector]);
     }
   }
@@ -151,6 +141,10 @@ public class CargoHandler extends Subsystem {
 
   public void setShooterState (ShooterState state){
     shooterState = state;
+  }
+
+  public void setShooterSpeed (double speed){
+    shootingSpeed = speed;
   }
 
   public void updateStatus(){

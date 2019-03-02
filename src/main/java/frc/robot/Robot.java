@@ -126,14 +126,18 @@ public class Robot extends TimedRobot {
       m_autonomousCommand.start();*/
 
       if (m_autoModeSwitch.get() & m_autoSideSwitch.get()){ // Right Rocket
-        new RightRocket();
-      }else if (m_autoModeSwitch.get() & !m_autoSideSwitch.get()){ // Left Rockwt
-        new LeftRocket();
-      }else if (!m_autoModeSwitch.get() & m_autoSideSwitch.get()){ // Right Cargo
-        new RightCargo();
-      }else if (!m_autoModeSwitch.get() & !m_autoSideSwitch.get()){ // Left Cargo
-        new LeftCargo();
+        m_autonomousCommand = new RightRocket();
       }
+      else if (m_autoModeSwitch.get() & !m_autoSideSwitch.get()){ // Left Rockwt
+        m_autonomousCommand = new LeftRocket();
+      }
+      else if (!m_autoModeSwitch.get() & m_autoSideSwitch.get()){ // Right Cargo
+        m_autonomousCommand = new RightCargo();
+      }
+      else if (!m_autoModeSwitch.get() & !m_autoSideSwitch.get()){ // Left Cargo
+        m_autonomousCommand = new LeftCargo();
+      }
+      m_autonomousCommand.start();
   }
 
   /**
@@ -142,6 +146,14 @@ public class Robot extends TimedRobot {
   @Override
   public void autonomousPeriodic() {
     Scheduler.getInstance().run();
+    //if the driver presses both triggers he gains control of the robot during autonomous
+    if(m_oi.getRightJoystickTrigger() && m_oi.getLeftJoystickTrigger()){
+      m_driveTrain.resetAngle();
+      m_driveTrain.resetEncoder();
+      if (m_autonomousCommand != null) {
+        m_autonomousCommand.cancel();
+      }
+    }
   }
 
   @Override

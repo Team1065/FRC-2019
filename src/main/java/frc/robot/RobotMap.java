@@ -22,6 +22,12 @@ public class RobotMap {
                              ELEVATOR_POS_4 = 20000.0,//Rocket High
                              ELEVATOR_POS_5 = 20000.0;//Rocket High
 
+  //Shooter Speeds
+  public static final double SHOOTER_SPEED_0 = 0.5,
+                             SHOOTER_SPEED_1 = 0.6,
+                             SHOOTER_SPEED_2 = 0.75,
+                             SHOOTER_SPEED_3 = 0.9;
+
   //PID Constants
   public static final double MECANUM_STRAIGHT_DRIVE_P = 0.023,
                              ELEVATOR_F = 0,

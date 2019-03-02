@@ -148,34 +148,32 @@ public class OI {
 		return position;
 	}
     
-    public int getAutoKnobPosition(){
-    	int position;
-      double knobValue = enhancedDS.getRawAxis(RobotMap.AUTO_KNOB_PORT);
-      double threshold = 0.010;
+    public double getShooterDesiredSpeed(){
+        double speed;
+        double knobValue = enhancedDS.getRawAxis(RobotMap.AUTO_KNOB_PORT);
+        double threshold = 0.010;
+
+        //If Shooter Knob is at 1
+        if(knobValue < RobotMap.AUTO_KNOB_POS_0 + threshold){
+            speed = RobotMap.SHOOTER_SPEED_0;
+        }
+        //If Shooter Knob is at 2
+        else if(knobValue >= RobotMap.AUTO_KNOB_POS_1 - threshold && knobValue < RobotMap.AUTO_KNOB_POS_1 + threshold){
+            speed = RobotMap.SHOOTER_SPEED_1;
+        }
+        //If Shooter Knob is at 3
+        else if(knobValue >= RobotMap.AUTO_KNOB_POS_2 - threshold && knobValue < RobotMap.AUTO_KNOB_POS_2 + threshold){
+            speed = RobotMap.SHOOTER_SPEED_2;
+        }
+        //If Shooter Knob is at 4
+        else if(knobValue >= RobotMap.AUTO_KNOB_POS_3 - threshold && knobValue < RobotMap.AUTO_KNOB_POS_3 + threshold){
+            speed = RobotMap.SHOOTER_SPEED_3;
+        }
+        else
+        {
+            speed = RobotMap.SHOOTER_SPEED_0;
+        }
       
-      //Introduce the use of a switch to double the number of auto modes we are able to select
-      
-      //If Station Knob is at 1
-      if(knobValue < RobotMap.AUTO_KNOB_POS_0 + threshold){
-              position = 0;
-          }
-          //If Station Knob is at 2
-          else if(knobValue >= RobotMap.AUTO_KNOB_POS_1 - threshold && knobValue < RobotMap.AUTO_KNOB_POS_1 + threshold){
-              position = 1;
-          }
-          //If Station Knob is at 3
-          else if(knobValue >= RobotMap.AUTO_KNOB_POS_2 - threshold && knobValue < RobotMap.AUTO_KNOB_POS_2 + threshold){
-              position = 2;
-          }
-          //If Station Knob is at 4
-          else if(knobValue >= RobotMap.AUTO_KNOB_POS_3 - threshold && knobValue < RobotMap.AUTO_KNOB_POS_3 + threshold){
-              position = 3;
-          }
-          else
-          {
-            position = 0;
-          }
-      
-      return position;
+      return speed;
 	}
 }
