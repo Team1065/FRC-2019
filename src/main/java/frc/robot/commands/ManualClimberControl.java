@@ -11,6 +11,8 @@ import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
 
 public class ManualClimberControl extends Command {
+  public boolean previousState;
+  public boolean wantedFrontstate;
   public ManualClimberControl() {
     requires(Robot.m_climber);
   }
@@ -18,19 +20,30 @@ public class ManualClimberControl extends Command {
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
+    wantedFrontstate = false;
+    previousState = false;
   }
 
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
     if(Robot.m_oi.getClimberExtend()){
-      Robot.m_climber.setFrontActuator(true);
-      Robot.m_climber.setBackMotors(Robot.m_oi.getRightJoystickY());
+      Robot.m_climber.setBackActuator(true);
     }
     else{
-      Robot.m_climber.setFrontActuator(false);
-      Robot.m_climber.setBackMotors(0);
+      Robot.m_climber.setBackActuator(false);
     }
+
+    boolean currentState;
+    currentState = Robot.m_oi.getLeftJoystickTopMiddle() && Robot.m_oi.getLeftJoystickTrigger();
+
+    if(currentState == true && previousState == false){
+      wantedFrontstate = !wantedFrontstate;
+    }
+
+    Robot.m_climber.setFrontActuator(wantedFrontstate);
+
+    previousState = currentState;
   }
 
   // Make this return true when this Command no longer needs to run execute()
@@ -43,7 +56,6 @@ public class ManualClimberControl extends Command {
   @Override
   protected void end() {
     Robot.m_climber.setFrontActuator(false);
-    Robot.m_climber.setBackMotors(0);
   }
 
   // Called when another command which requires one or more of the same

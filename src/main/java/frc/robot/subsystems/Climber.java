@@ -16,41 +16,26 @@ import frc.robot.RobotMap;
 import frc.robot.commands.ManualClimberControl;
 
 public class Climber extends Subsystem {
-  private Talon backMotors;
   private Solenoid frontActuator, backActuator;
-  private DigitalInput backBottomLimit, backTopLimit;
 
   public Climber() {
-    backMotors = new Talon(RobotMap.CLIMBER_MOTORS_PORT);
     frontActuator = new Solenoid(RobotMap.FROMT_CLIMBER_SOLENOID_PORT);
     backActuator = new Solenoid(RobotMap.BACK_CLIMBER_SOLENOID_PORT);
-    backBottomLimit = new DigitalInput(RobotMap.CLIMBER_BOTTOM_LIMIT_PORT);
-    backTopLimit = new DigitalInput(RobotMap.CLIMBER_TOP_LIMIT_PORT);
   }
-
   @Override
   public void initDefaultCommand() {
     setDefaultCommand(new ManualClimberControl());
-  }
-
-  public void setBackMotors(double speed) {
-    backMotors.set(speed);
-    //assume normally open switches
-    if(speed < 0 && !backBottomLimit.get() || 
-       speed > 0 && !backTopLimit.get()) {
-        backMotors.set(0);
-    }
-    else{
-      backMotors.set(speed);
-    }
   }
 
   public void setFrontActuator(boolean extend) {
     frontActuator.set(extend);
   }
 
+  public void setBackActuator(boolean extend) {
+    backActuator.set(extend);
+  }
+
   public void updateStatus(){
-    SmartDashboard.putBoolean("Climber Bottom Limit", !backBottomLimit.get());
-    SmartDashboard.putBoolean("Climber Top Limit", !backTopLimit.get());
   }
 }
+

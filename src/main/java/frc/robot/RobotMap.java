@@ -110,7 +110,8 @@ public class RobotMap {
                           ELEVATOR_KNOB_PORT = 0,					//Analog TODO
                           AUTO_KNOB_PORT = 1,                     //Analog TODO
                           ELEVATOR_JOYSTICK_Y_PORT = 2,			    //Analog;		TODO			
-                          CAMERA_JOYSTICK_X_PORT = 4;			    //Analog;		TODO			
+                          CAMERA_JOYSTICK_X_PORT = 4,		    //Analog;		TODO			
+                          CAMERA_JOYSTICK_Y_PORT = 5;       //Analog;   TODO
 
   public static final double  ELEVATOR_KNOB_POS_0 = 0.000,
                               ELEVATOR_KNOB_POS_1 = 0.024,

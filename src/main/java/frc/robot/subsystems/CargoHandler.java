@@ -21,7 +21,7 @@ public class CargoHandler extends Subsystem {
   public enum IntakeState{OFF, IN, OUT};
   public enum ShooterState{OFF, FRONT, RIGHT, LEFT};
 
-  private VictorSPX intake, indexerMid, indexerTop;
+  private VictorSPX intake, indexerMid;
   private TalonSRX shooter;
   private DigitalInput cargoDetection;
   private IntakeState intakeState;
@@ -31,7 +31,6 @@ public class CargoHandler extends Subsystem {
   public CargoHandler(){
     intake = new VictorSPX(RobotMap.INTAKE_VICTOR_PORT);
     indexerMid = new VictorSPX(RobotMap.INDEXER_MID_VICTOR_PORT);
-    indexerTop = new VictorSPX(RobotMap.INDEXER_TOP_VICTOR_PORT);
     shooter = new TalonSRX(RobotMap.SHOOTER_TALON_PORT);
 
     intake.setInverted(true);
@@ -67,7 +66,7 @@ public class CargoHandler extends Subsystem {
     else if(intakeState == IntakeState.IN){
       if(shooterState != ShooterState.OFF){
         setIntake(0.6);
-        setIndexerMid(0.6);
+        setIndexerMid(0.5);
       }
       else if(isCargoDetected()){
         setIntake(-0.8);
@@ -92,26 +91,17 @@ public class CargoHandler extends Subsystem {
     //TOP INDEXER AND SHOOTER
     if(shooterState == ShooterState.OFF){
       setShooter(0);
-      if(intakeState == IntakeState.OUT){
-        setIndexerTop(-1);
-      }
-      else{
-        //setIndexerTop(0);
-      }
     }
     else if(shooterState == ShooterState.FRONT){
       setShooter(0);
-      //setIndexerTop(0);
       setIntake(1);
       setIndexerMid(-1);
     }
     else if(shooterState == ShooterState.LEFT){
       setShooter(-shootingSpeed);
-      //setIndexerTop(0.7);
     }
     else if(shooterState == ShooterState.RIGHT){
       setShooter(shootingSpeed);
-      //setIndexerTop(shooterConfigs[shooterConfigSelector]);
     }
   }
 
@@ -125,10 +115,6 @@ public class CargoHandler extends Subsystem {
 
   public void setIndexerMid(double speed){
     indexerMid.set(ControlMode.PercentOutput, speed);
-  }
-
-  public void setIndexerTop(double speed){
-    indexerTop.set(ControlMode.PercentOutput, speed);
   }
 
   public void setShooter(double speed){

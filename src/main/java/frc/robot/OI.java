@@ -74,6 +74,10 @@ public class OI {
     public boolean getLeftJoystickTrigger(){
     	return leftJoystick.getTrigger();
     }
+
+    public boolean getLeftJoystickTopMiddle(){
+    	return leftJoystick.getRawButton(3);
+    }
     
     public boolean getCompressorOverride(){
     	return enhancedDS.getRawButton(RobotMap.COMPRESSOR_CONTROL_OVERRIDE);
@@ -95,6 +99,10 @@ public class OI {
         return enhancedDS.getRawAxis(RobotMap.CAMERA_JOYSTICK_X_PORT);
     }
     
+    public double getCameraStickY(){
+        return enhancedDS.getRawAxis(RobotMap.CAMERA_JOYSTICK_Y_PORT);
+    }
+
     public boolean getElevatorOverride(){
     	return enhancedDS.getRawButton(RobotMap.ELEVATOR_CONTROL_OVERRIDE);
     }

@@ -27,7 +27,8 @@ public class ManualCameraControl extends Command {
   @Override
   protected void execute() {
     double mountVal = Robot.m_vision.getMount();
-    double cameraStickX = Robot.m_oi.getElevatorStickY();
+    double cameraStickX = Robot.m_oi.getCameraStickX();
+    double cameraStickY = Robot.m_oi.getCameraStickY();
     
     if(cameraStickX > 0.073){
         mountVal += .01;
@@ -35,7 +36,7 @@ public class ManualCameraControl extends Command {
     else if(cameraStickX < 0.053){
         mountVal -= .01;
     }
-    
+   
     Robot.m_vision.setMount(mountVal);
 
 
