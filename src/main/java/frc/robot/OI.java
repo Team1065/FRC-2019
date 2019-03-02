@@ -94,9 +94,17 @@ public class OI {
     public double getCameraStickX(){
         return enhancedDS.getRawAxis(RobotMap.CAMERA_JOYSTICK_X_PORT);
     }
+
+    public double getCameraStickY(){
+        return enhancedDS.getRawAxis(RobotMap.CAMERA_JOYSTICK_Y_PORT);
+    }
     
     public boolean getElevatorOverride(){
     	return enhancedDS.getRawButton(RobotMap.ELEVATOR_CONTROL_OVERRIDE);
+    }
+
+    public boolean getGrabberControl(){
+        return enhancedDS.getRawButton(RobotMap.GRABBER_SOLENOID_CONTROL);
     }
     
     public boolean getIntakeIn(){

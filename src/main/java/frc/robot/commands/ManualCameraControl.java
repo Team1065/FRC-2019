@@ -11,6 +11,7 @@ import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.Timer;
 import frc.robot.Robot;
 import frc.robot.RobotMap;
+import frc.robot.subsystems.VisionSystem.State;
 
 public class ManualCameraControl extends Command {
   public ManualCameraControl() {
@@ -26,19 +27,19 @@ public class ManualCameraControl extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    double mountVal = Robot.m_vision.getMount();
-    double cameraStickX = Robot.m_oi.getElevatorStickY();
-    
-    if(cameraStickX > 0.073){
-        mountVal += .01;
-    }
-    else if(cameraStickX < 0.053){
-        mountVal -= .01;
-    }
-    
-    Robot.m_vision.setMount(mountVal);
+    double cameraStickX = Robot.m_oi.getCameraStickX();
+    double cameraStickY = Robot.m_oi.getCameraStickY();
 
+      if(cameraStickY > 0.07){
+        Robot.m_vision.setCamState(State.FRONT_VIEW);
+      }else if (cameraStickY < 0.03){
+        Robot.m_vision.setCamState(State.BACK_VIEW);
+      }
+      if(cameraStickX > 0.07){
+        Robot.m_vision.setCamState(State.RIGHT_VIEW);
+      }
 
+      Robot.m_vision.update();
   }
 
   // Make this return true when this Command no longer needs to run execute()

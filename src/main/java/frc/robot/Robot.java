@@ -82,6 +82,7 @@ public class Robot extends TimedRobot {
     m_cargoHandler.updateStatus();
     m_elevator.updateStatus();
     m_climber.updateStatus();
+    m_vision.updateStatus();
   }
 
   /**
