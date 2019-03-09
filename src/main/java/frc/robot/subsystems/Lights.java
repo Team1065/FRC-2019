@@ -9,7 +9,6 @@ package frc.robot.subsystems;
 
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.Solenoid;
-import edu.wpi.first.wpilibj.Talon;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.RobotMap;
@@ -18,12 +17,15 @@ import frc.robot.commands.LEDControl;
 public class Lights extends Subsystem {
 
     private Solenoid m_CargoLED, m_LED2, m_LED3, m_LED4;
+    private DigitalInput lineSensor;
 
     public Lights() {
         m_CargoLED = new Solenoid(1, RobotMap.CARGO_LED_PORT);
         m_LED2 = new Solenoid(1, RobotMap.LED2_PORT);
         m_LED3 = new Solenoid(1, RobotMap.LED3_PORT);
         m_LED4 = new Solenoid(1, RobotMap.LED4_PORT);
+
+        lineSensor = new DigitalInput(RobotMap.LINE_SENSOR_PORT);
     }
 
     @Override
@@ -47,4 +49,11 @@ public class Lights extends Subsystem {
         m_LED4.set(on);
     }
 
+    public boolean isLineDetected(){
+        return lineSensor.get();
+    }
+
+    public void updateStatus(){
+        SmartDashboard.putBoolean("[Lights] Line Detected", isLineDetected());
+      }
 }

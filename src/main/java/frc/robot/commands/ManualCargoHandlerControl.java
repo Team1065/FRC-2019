@@ -50,8 +50,14 @@ public class ManualCargoHandlerControl extends Command {
     else{
       Robot.m_cargoHandler.setShooterState(ShooterState.OFF);
     }
-
-    Robot.m_cargoHandler.setShooterSpeed(Robot.m_oi.getShooterDesiredSpeed());
+    
+    if(Robot.m_oi.getElevatorOverride()){
+      Robot.m_cargoHandler.setShooterSpeedPercent(Robot.m_oi.getShooterDesiredSpeedPercentage());
+    }
+    else{
+      Robot.m_cargoHandler.setShooterSpeed(Robot.m_oi.getShooterDesiredSpeed());
+    }
+    
 
     Robot.m_cargoHandler.update();
   }

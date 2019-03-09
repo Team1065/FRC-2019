@@ -10,7 +10,6 @@ package frc.robot.commands;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.Timer;
 import frc.robot.Robot;
-import frc.robot.RobotMap;
 
 public class LEDControl extends Command {
   public LEDControl() {
@@ -33,15 +32,17 @@ public class LEDControl extends Command {
         if(Robot.m_elevator.getBottomLimit()){ // TODO: change to shooter at speed
             cargoLedState = true;
         }
-        else if(timeDecimal < 0.25 || (timeDecimal > 0.5 && timeDecimal < 0.75) ){
+        else if( Robot.m_cargoHandler.isCargoDetected() && (timeDecimal < 0.25 || (timeDecimal > 0.5 && timeDecimal < 0.75)) ){
             cargoLedState = true;
         }
     }
 
     Robot.m_lighting.setCargoLED(cargoLedState);
-    Robot.m_lighting.setLED2(cargoLedState);
-    Robot.m_lighting.setLED2(cargoLedState);
-    Robot.m_lighting.setLED3(cargoLedState);
+
+    boolean lineDetected = Robot.m_lighting.isLineDetected();
+    Robot.m_lighting.setLED2(lineDetected);
+    Robot.m_lighting.setLED3(lineDetected);
+    Robot.m_lighting.setLED4(lineDetected);
   }
 
   // Make this return true when this Command no longer needs to run execute()

@@ -22,11 +22,17 @@ public class RobotMap {
                              ELEVATOR_POS_4 = 20000.0,//Rocket High
                              ELEVATOR_POS_5 = 20000.0;//Rocket High
 
+  //Shooter Speeds Percentage
+  public static final double SHOOTER_SPEED_PERCENTAGE_0 = 0,
+                             SHOOTER_SPEED_PERCENTAGE_1 = 0.5,
+                             SHOOTER_SPEED_PERCENTAGE_2 = 0.75,
+                             SHOOTER_SPEED_PERCENTAGE_3 = 1.0;
+
   //Shooter Speeds
-  public static final double SHOOTER_SPEED_0 = 0.5,
-                             SHOOTER_SPEED_1 = 0.6,
-                             SHOOTER_SPEED_2 = 0.75,
-                             SHOOTER_SPEED_3 = 0.9;
+  public static final double SHOOTER_SPEED_0 = 0,
+                             SHOOTER_SPEED_1 = 1000,
+                             SHOOTER_SPEED_2 = 2000,
+                             SHOOTER_SPEED_3 = 3000;
 
   //PID Constants
   public static final double MECANUM_STRAIGHT_DRIVE_P = 0.023,
@@ -34,14 +40,14 @@ public class RobotMap {
                              ELEVATOR_P = 0.005,
                              ELEVATOR_I = 0,
                              ELEVATOR_D = 0,
-                             SHOOTER_F = 0,
-                             SHOOTER_P = 100.0,
-                             SHOOTER_I = 0,
+                             SHOOTER_F = 0.1097,//tune F and then P/D to get good control.
+                             SHOOTER_P = 0.0,//0.11
+                             SHOOTER_I = 0,//0.22
                              SHOOTER_D = 0;
 
   //Int Constants
   public static final int ELEVATOR_ERROR = 2000,
-                          SHOOTER_ERROR = 2000;//4098 is 1 full rotation
+                          SHOOTER_ERROR = 100;//needs to be tuned
 
   //Double Constants
   public static final double JOYSTICK_DEADBAND = 0.05,
@@ -88,7 +94,8 @@ public class RobotMap {
                           ELEVATOR_BOTTOM_LIMIT_PORT = 3,
                           ELEVATOR_TOP_LIMIT_PORT = 4,
                           AUTO_SIDE_SWITCH_PORT = 5, // On = Right Off = Left
-                          AUTO_MODE_SWITCH_PORT = 6; // On = rocket Off = Cargo
+                          AUTO_MODE_SWITCH_PORT = 6, // On = rocket Off = Cargo
+                          LINE_SENSOR_PORT = 7; 
 
   //OI
   public static final int LEFT_JOYSTICK_PORT = 0,					//usb
@@ -98,20 +105,15 @@ public class RobotMap {
                           COMPRESSOR_CONTROL_OVERRIDE = 2,		//Digital
                           INTAKE_IN_PORT = 4,					//Digital
                           INTAKE_OUT_PORT = 5,					//Digital
-                          ARM_UP_PORT = 6,						//Digital TODO
-                          ARM_DOWN_PORT = 8,					//Digital TODO
-                          ELEVATOR_CONTROL_OVERRIDE = 9,				//Digital TODO
-                          GRABBER_SOLENOID_CONTROL = 12,		//Digital TODO
-                          ELEVATOR_KNOB_PORT = 0,					//Analog TODO
-                          AUTO_KNOB_PORT = 1,                     //Analog TODO
-                          ELEVATOR_JOYSTICK_Y_PORT = 2,			    //Analog;		TODO			
-<<<<<<< HEAD
-                          CAMERA_JOYSTICK_X_PORT = 4,		    //Analog;		TODO			
-                          CAMERA_JOYSTICK_Y_PORT = 5;       //Analog;   TODO
-=======
-                          CAMERA_JOYSTICK_X_PORT = 4,			    //Analog;		TODO			
-                          CAMERA_JOYSTICK_Y_PORT = 5;			    //Analog;		TODO			
->>>>>>> bcea0c59c36dbfe7c8056ec6062d39f18dcce434
+                          ARM_UP_PORT = 6,						//Digital 
+                          ARM_DOWN_PORT = 8,					//Digital 
+                          ELEVATOR_CONTROL_OVERRIDE = 9,				//Digital 
+                          GRABBER_SOLENOID_CONTROL = 12,		//Digital
+                          ELEVATOR_KNOB_PORT = 0,					//Analog
+                          AUTO_KNOB_PORT = 1,                     //Analog
+                          ELEVATOR_JOYSTICK_Y_PORT = 2,			    //Analog			
+                          CAMERA_JOYSTICK_X_PORT = 4,			    //Analog			
+                          CAMERA_JOYSTICK_Y_PORT = 5;			    //Analog			
 
   public static final double  ELEVATOR_KNOB_POS_0 = 0.000,
                               ELEVATOR_KNOB_POS_1 = 0.024,

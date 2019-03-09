@@ -8,6 +8,7 @@
 package frc.robot.subsystems;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
+import com.ctre.phoenix.motorcontrol.FeedbackDevice;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 import com.ctre.phoenix.motorcontrol.can.VictorSPX;
 
@@ -33,6 +34,19 @@ public class CargoHandler extends Subsystem {
     indexerMid = new VictorSPX(RobotMap.INDEXER_MID_VICTOR_PORT);
     shooter = new TalonSRX(RobotMap.SHOOTER_TALON_PORT);
 
+    shooter.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative, 0, 0);
+		shooter.setSensorPhase(true);
+		shooter.setInverted(false);
+		shooter.configNominalOutputForward(0.0, 0);
+		shooter.configNominalOutputReverse(-0.0, 0);
+		shooter.configPeakOutputForward(1, 0);
+		shooter.configPeakOutputReverse(0, 0);//no reverse so we can use bang bang if need be
+		//shooter.configAllowableClosedloopError(0, RobotMap.SHOOTER_ERROR, 0);
+		shooter.config_kF(0, RobotMap.SHOOTER_F, 0);
+		shooter.config_kP(0, RobotMap.SHOOTER_P, 0);
+		shooter.config_kI(0, RobotMap.SHOOTER_I, 0);
+    shooter.config_kD(0, RobotMap.SHOOTER_D, 0);
+
     intake.setInverted(true);
     indexerMid.setInverted(true);
     //indexerTop.setInverted(false);
@@ -42,7 +56,7 @@ public class CargoHandler extends Subsystem {
     
     intakeState = IntakeState.OFF;
     shooterState = ShooterState.OFF;
-    shootingSpeed = 0.5;
+    shootingSpeed = 0;
   }
 
   @Override
@@ -90,23 +104,27 @@ public class CargoHandler extends Subsystem {
 
     //TOP INDEXER AND SHOOTER
     if(shooterState == ShooterState.OFF){
-      setShooter(0);
+      //setShooter(0);
     }
     else if(shooterState == ShooterState.FRONT){
-      setShooter(0);
+      //setShooter(0);
       setIntake(1);
       setIndexerMid(-1);
     }
     else if(shooterState == ShooterState.LEFT){
-      setShooter(-shootingSpeed);
+      //setShooter(-shootingSpeed);
     }
     else if(shooterState == ShooterState.RIGHT){
-      setShooter(shootingSpeed);
+      //setShooter(shootingSpeed);
     }
   }
 
   public boolean isCargoDetected(){
    return !cargoDetection.get();
+  }
+
+  public boolean isShooterUpToSpeed(){
+    return shooter.getClosedLoopError(0) < RobotMap.ELEVATOR_ERROR;
   }
 
   public void setIntake(double speed){
@@ -117,10 +135,6 @@ public class CargoHandler extends Subsystem {
     indexerMid.set(ControlMode.PercentOutput, speed);
   }
 
-  public void setShooter(double speed){
-    shooter.set(ControlMode.PercentOutput, speed);
-  }
-
   public void setIntakeState (IntakeState state){
     intakeState = state;
   }
@@ -129,13 +143,23 @@ public class CargoHandler extends Subsystem {
     shooterState = state;
   }
 
-  public void setShooterSpeed (double speed){
+  public void setShooterSpeedPercent (double speed){
     shootingSpeed = speed;
+    shooter.set(ControlMode.PercentOutput, speed);
+  }
+
+  public void setShooterSpeed(double speed){
+    shootingSpeed = speed;
+    shooter.set(ControlMode.Velocity, speed);
   }
 
   public void updateStatus(){
     SmartDashboard.putBoolean("[CH] Cargo Detected", isCargoDetected());
     SmartDashboard.putString("[DT] Intake State", intakeState.toString());
-    SmartDashboard.putString("[DT] Shooter State", shooterState.toString());
+    SmartDashboard.putString("[DT] Shooting State", shooterState.toString());
+    SmartDashboard.putNumber("[DT] Target Shooter Speed", shootingSpeed);
+    SmartDashboard.putNumber("[DT] Shooter Speed", shooter.getSelectedSensorVelocity());
+    SmartDashboard.putNumber("[DT] Shooter Error", shooter.getClosedLoopError());
+    SmartDashboard.putNumber("[DT] Shooter Motor Percent", shooter.getMotorOutputPercent());
   }
 }

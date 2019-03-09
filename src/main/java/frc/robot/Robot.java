@@ -83,6 +83,7 @@ public class Robot extends TimedRobot {
     m_elevator.updateStatus();
     m_climber.updateStatus();
     m_vision.updateStatus();
+    m_lighting.updateStatus();
   }
 
   /**
@@ -154,6 +155,12 @@ public class Robot extends TimedRobot {
       if (m_autonomousCommand != null) {
         m_autonomousCommand.cancel();
       }
+    }
+
+    if(m_oi.getCompressorOverride()){
+			m_compressor.setClosedLoopControl(false);
+    }else{
+      m_compressor.setClosedLoopControl(true);
     }
   }
 
