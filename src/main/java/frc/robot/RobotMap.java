@@ -72,9 +72,7 @@ public class RobotMap {
                           FROMT_CLIMBER_SOLENOID_PORT = 2,
                           BACK_CLIMBER_SOLENOID_PORT = 3,
                           ARM_SOLENOID_PORT = 4,
-                          GRABBER_SOLENOID_PORT = 5,
-                          HOOD_SOLENOID_PORT = 6,
-                          SHOOTER_LIGHT_PORT = 7;
+                          GRABBER_SOLENOID_PORT = 5;
 
   //PCM 2 Ports
   public static final int CARGO_LED_PORT = 0,
@@ -89,11 +87,8 @@ public class RobotMap {
                           CARGO_SWITCH_PORT = 2,
                           ELEVATOR_BOTTOM_LIMIT_PORT = 3,
                           ELEVATOR_TOP_LIMIT_PORT = 4,
-                          CLIMBER_BOTTOM_LIMIT_PORT = 5,
-                          CLIMBER_TOP_LIMIT_PORT = 6,
-                          AUTO_SIDE_SWITCH_PORT = 7, // On = Right Off = Left
-                          AUTO_MODE_SWITCH_PORT = 8, // On = rocket Off = Cargo
-                          SHOOTER_ENCODER_PORT = 9; 
+                          AUTO_SIDE_SWITCH_PORT = 5, // On = Right Off = Left
+                          AUTO_MODE_SWITCH_PORT = 6; // On = rocket Off = Cargo
 
   //OI
   public static final int LEFT_JOYSTICK_PORT = 0,					//usb
@@ -106,12 +101,17 @@ public class RobotMap {
                           ARM_UP_PORT = 6,						//Digital TODO
                           ARM_DOWN_PORT = 8,					//Digital TODO
                           ELEVATOR_CONTROL_OVERRIDE = 9,				//Digital TODO
-                          ELEVATOR_SOLENOID_CONTROL_OVERRIDE = 12,		//Digital TODO
+                          GRABBER_SOLENOID_CONTROL = 12,		//Digital TODO
                           ELEVATOR_KNOB_PORT = 0,					//Analog TODO
                           AUTO_KNOB_PORT = 1,                     //Analog TODO
                           ELEVATOR_JOYSTICK_Y_PORT = 2,			    //Analog;		TODO			
+<<<<<<< HEAD
                           CAMERA_JOYSTICK_X_PORT = 4,		    //Analog;		TODO			
                           CAMERA_JOYSTICK_Y_PORT = 5;       //Analog;   TODO
+=======
+                          CAMERA_JOYSTICK_X_PORT = 4,			    //Analog;		TODO			
+                          CAMERA_JOYSTICK_Y_PORT = 5;			    //Analog;		TODO			
+>>>>>>> bcea0c59c36dbfe7c8056ec6062d39f18dcce434
 
   public static final double  ELEVATOR_KNOB_POS_0 = 0.000,
                               ELEVATOR_KNOB_POS_1 = 0.024,

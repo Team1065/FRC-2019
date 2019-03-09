@@ -13,10 +13,12 @@ import edu.wpi.first.wpilibj.CameraServer;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.commands.ManualCameraControl;
+import frc.robot.Robot;
 import frc.robot.RobotMap;
 
 public class VisionSystem extends Subsystem {
-    public enum State{FRONT_CAMERA_VIEW, RIGHT_CAMERA_VIEW, LEFT_CAMERA_VIEW, BACK_CAMERA_VIEW};
+    public enum State{FRONT_VIEW, RIGHT_VIEW, BACK_VIEW};
+    State curCamState;
     Servo mount;
 	UsbCamera camera0;
 	//UsbCamera camera1;
@@ -27,28 +29,40 @@ public class VisionSystem extends Subsystem {
   public VisionSystem() {
     mount = new Servo(RobotMap.CAMERA_SERVO_PORT);
     setMount(0);
+
+    setCamState(State.BACK_VIEW);
     
     camera0 = CameraServer.getInstance().startAutomaticCapture(0);
     camera0.setFPS(15);
     camera0.setResolution(320, 240);
     camera0.setExposureManual(40);
-    camera0.setExposureHoldCurrent();
-      
+    camera0.setExposureHoldCurrent();   
   }
 
+  public void update(){
+      if(getState() == State.FRONT_VIEW){
+          setMount(0);
+      }else if (getState() == State.RIGHT_VIEW){
+          setMount(0.35);
+      }else if(getState() == State.BACK_VIEW){
+          setMount(0.75);
+      }
+  }
 
   public void setMount(double val){
-        if (val < 0.08){
-            val = 0.08;
-        }
-        else if (val > 0.44){
-            val = 0.44;
-        }
         mount.set(val);
+    }
+
+    public void setCamState(State state){
+        curCamState = state;
     }
 
     public double getMount(){
         return mount.get();
+    }
+
+    public State getState(){
+        return curCamState;
     }
 
   @Override
@@ -56,4 +70,10 @@ public class VisionSystem extends Subsystem {
     setDefaultCommand(new ManualCameraControl());
   }
 
+  public void updateStatus(){
+      SmartDashboard.putNumber("CamJoystick ValX", Robot.m_oi.getCameraStickX());
+      SmartDashboard.putNumber("CamJoystick ValY", Robot.m_oi.getCameraStickY());
+      SmartDashboard.putString("Camera State", getState().toString());
+      SmartDashboard.putNumber("Camera Pos", getMount());
+  }
 }
