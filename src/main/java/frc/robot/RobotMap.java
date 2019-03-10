@@ -24,15 +24,15 @@ public class RobotMap {
 
   //Shooter Speeds Percentage
   public static final double SHOOTER_SPEED_PERCENTAGE_0 = 0,
-                             SHOOTER_SPEED_PERCENTAGE_1 = 0.6,
+                             SHOOTER_SPEED_PERCENTAGE_1 = 0.5,
                              SHOOTER_SPEED_PERCENTAGE_2 = 0.75,
                              SHOOTER_SPEED_PERCENTAGE_3 = 1.0;
 
   //Shooter Speeds
   public static final double SHOOTER_SPEED_0 = 0,
-                             SHOOTER_SPEED_1 = 9000,
-                             SHOOTER_SPEED_2 = 12000,
-                             SHOOTER_SPEED_3 = 15000;
+                             SHOOTER_SPEED_1 = 6000,
+                             SHOOTER_SPEED_2 = 7000,
+                             SHOOTER_SPEED_3 = 8000;
 
   //PID Constants
   public static final double MECANUM_STRAIGHT_DRIVE_P = 0.023,
