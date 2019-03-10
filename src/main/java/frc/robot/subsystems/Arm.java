@@ -31,6 +31,6 @@ public class Arm extends Subsystem {
   }
   
   public void setGrabberActuator(boolean extend){
-      grabberSolenoid.set(extend);
+      grabberSolenoid.set(!extend);
   }
 }

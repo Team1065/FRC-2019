@@ -24,30 +24,30 @@ public class RobotMap {
 
   //Shooter Speeds Percentage
   public static final double SHOOTER_SPEED_PERCENTAGE_0 = 0,
-                             SHOOTER_SPEED_PERCENTAGE_1 = 0.5,
+                             SHOOTER_SPEED_PERCENTAGE_1 = 0.6,
                              SHOOTER_SPEED_PERCENTAGE_2 = 0.75,
                              SHOOTER_SPEED_PERCENTAGE_3 = 1.0;
 
   //Shooter Speeds
   public static final double SHOOTER_SPEED_0 = 0,
-                             SHOOTER_SPEED_1 = 1000,
-                             SHOOTER_SPEED_2 = 2000,
-                             SHOOTER_SPEED_3 = 3000;
+                             SHOOTER_SPEED_1 = 9000,
+                             SHOOTER_SPEED_2 = 12000,
+                             SHOOTER_SPEED_3 = 15000;
 
   //PID Constants
   public static final double MECANUM_STRAIGHT_DRIVE_P = 0.023,
                              ELEVATOR_F = 0,
-                             ELEVATOR_P = 0.005,
+                             ELEVATOR_P = 0.01,
                              ELEVATOR_I = 0,
                              ELEVATOR_D = 0,
-                             SHOOTER_F = 0.1097,//tune F and then P/D to get good control.
-                             SHOOTER_P = 0.0,//0.11
-                             SHOOTER_I = 0,//0.22
-                             SHOOTER_D = 0;
+                             SHOOTER_F = 0.0575,//tune F and then P/D to get good control.
+                             SHOOTER_P = 0.95,//0.11
+                             SHOOTER_I = 0.00,
+                             SHOOTER_D = 0.0;
 
   //Int Constants
   public static final int ELEVATOR_ERROR = 2000,
-                          SHOOTER_ERROR = 100;//needs to be tuned
+                          SHOOTER_ERROR = 300;//needs to be tuned
 
   //Double Constants
   public static final double JOYSTICK_DEADBAND = 0.05,
@@ -62,7 +62,7 @@ public class RobotMap {
                           RIGHT_FRONT_DRIVE_MOTOR_PORT = 1,
                           LEFT_BACK_DRIVE_MOTOR_PORT = 2,
                           RIGHT_BACK_DRIVE_MOTOR_PORT = 3,
-                          CLIMBER_MOTORS_PORT = 4,
+                          CLIMBER_MOTOR_PORT = 4,
                           CAMERA_SERVO_PORT = 5;
 
  //CAN Ports
@@ -71,14 +71,15 @@ public class RobotMap {
                           INDEXER_TOP_VICTOR_PORT = 3,
                           ELEVATOR_MASTER_TALON_PORT = 1,
                           ELEVATOR_SLAVE_TALON_PORT = 2,
-                          SHOOTER_TALON_PORT = 3;
+                          SHOOTER_TALON_PORT = 2;
 
   //PCM 1 Ports
   public static final int DROPDOWN_SOLENOID_PORT = 1,
                           FROMT_CLIMBER_SOLENOID_PORT = 2,
                           BACK_CLIMBER_SOLENOID_PORT = 3,
-                          ARM_SOLENOID_PORT = 4,
-                          GRABBER_SOLENOID_PORT = 5;
+                          GRABBER_SOLENOID_PORT = 4,
+                          ARM_SOLENOID_PORT = 5;
+
 
   //PCM 2 Ports
   public static final int CARGO_LED_PORT = 0,

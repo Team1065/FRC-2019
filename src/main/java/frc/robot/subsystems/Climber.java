@@ -7,20 +7,21 @@
 
 package frc.robot.subsystems;
 
-import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.Solenoid;
-import edu.wpi.first.wpilibj.Talon;
+import edu.wpi.first.wpilibj.VictorSP;
 import edu.wpi.first.wpilibj.command.Subsystem;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.RobotMap;
 import frc.robot.commands.ManualClimberControl;
 
 public class Climber extends Subsystem {
   private Solenoid frontActuator, backActuator;
+  private VictorSP backMotor;
 
   public Climber() {
     frontActuator = new Solenoid(RobotMap.FROMT_CLIMBER_SOLENOID_PORT);
     backActuator = new Solenoid(RobotMap.BACK_CLIMBER_SOLENOID_PORT);
+
+    backMotor = new VictorSP(RobotMap.CLIMBER_MOTOR_PORT);
   }
   @Override
   public void initDefaultCommand() {
@@ -35,6 +36,13 @@ public class Climber extends Subsystem {
     backActuator.set(extend);
   }
 
+  public boolean isBackActuatorExtended(){
+    return backActuator.get();
+  }
+
+  public void setMotor(double speed){
+    backMotor.set(speed);
+  }
   public void updateStatus(){
   }
 }

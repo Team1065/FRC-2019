@@ -10,6 +10,7 @@ package frc.robot.subsystems;
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.FeedbackDevice;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
+import com.ctre.phoenix.motorcontrol.can.VictorSPX;
 
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.command.Subsystem;
@@ -18,7 +19,8 @@ import frc.robot.RobotMap;
 import frc.robot.commands.ManualElevatorControl;
 
 public class Elevator extends Subsystem {
-  private TalonSRX masterTalon, slaveTalon;
+  private TalonSRX masterTalon;//, slaveTalon;
+  private VictorSPX slaveTalon;
   private DigitalInput bottomLimit, topLimit;
 
   public Elevator (){
@@ -26,10 +28,11 @@ public class Elevator extends Subsystem {
     topLimit = new DigitalInput(RobotMap.ELEVATOR_TOP_LIMIT_PORT);
 
     masterTalon = new TalonSRX(RobotMap.ELEVATOR_MASTER_TALON_PORT);
-    slaveTalon = new TalonSRX(RobotMap.ELEVATOR_SLAVE_TALON_PORT);
+    //slaveTalon = new TalonSRX(RobotMap.ELEVATOR_SLAVE_TALON_PORT);
+    slaveTalon = new VictorSPX(4);
 
     slaveTalon.follow(masterTalon);
-		slaveTalon.setInverted(true);
+		slaveTalon.setInverted(false);
 		slaveTalon.configNominalOutputForward(0.0, 0);
 		slaveTalon.configNominalOutputReverse(-0.0, 0);
 		slaveTalon.configPeakOutputForward(1, 0);
