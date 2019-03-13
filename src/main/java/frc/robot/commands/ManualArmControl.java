@@ -32,7 +32,7 @@ public class ManualArmControl extends Command {
         Robot.m_arm.setArmActuators(false);
     }
 
-    if(Robot.m_oi.getGrabberControl()){
+    if(!Robot.m_oi.getGrabberControl()){
       Robot.m_arm.setGrabberActuator(true);
     }else{
       Robot.m_arm.setGrabberActuator(false);
