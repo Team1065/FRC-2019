@@ -69,8 +69,8 @@ public class CargoHandler extends Subsystem {
     //INTAKE AND MIDDLE INDEXER
     if(intakeState == IntakeState.OFF){
       if(shooterState != ShooterState.OFF){
-        setIntake(0.7);
-        setIndexerMid(0.7);
+        setIntake(0.6);
+        setIndexerMid(0.6);
       }
       else{
         setIntake(0);

@@ -6,7 +6,7 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 public class LeftCargo extends CommandGroup {
 
     public LeftCargo() {
-    	addSequential(new DriveToDistance(-.7, 105, 15));
+    	addSequential(new DriveToDistance(-.7, 115, 15));
 		addSequential(new DriveForTime(0,0,0.5));  // Deploy Panel
 		addParallel(new AutoArmControl(false, true));
 
@@ -18,12 +18,14 @@ public class LeftCargo extends CommandGroup {
 		//addSequential(new DriveForTime(0,0,0.5));
 		addParallel(new AutoArmControl(false, false));
 
-		addSequential(new DriveToDistance(-.8, 105, 15));
+		addSequential(new DriveToDistance(-.75, 95, 15));
 		//addSequential(new DriveForTime(0,0,0.5));
 
 		addSequential(new RotateToAngle(.65, -180, 15));
 		//addSequential(new DriveForTime(0,0,0.5));
 		addParallel(new AutoArmControl(false, true));
+
+		addSequential(new DriveToDistance(-.7, 40, 15));
 
 		//maybe just stop short and wait for the drivers to pick up the hatch so we dont break the grabber if we are misaligned
 

@@ -15,12 +15,12 @@ package frc.robot;
  */
 public class RobotMap {
   //Elevator positions
-  public static final double ELEVATOR_POS_0 = 0.0,//Cargo
-                             ELEVATOR_POS_1 = 0.0,//Rocket Low
-                             ELEVATOR_POS_2 = 10000.0,//Rocket Mid
-                             ELEVATOR_POS_3 = 20000.0,//Rocket High
-                             ELEVATOR_POS_4 = 20000.0,//Rocket High
-                             ELEVATOR_POS_5 = 20000.0;//Rocket High
+  public static final double ELEVATOR_POS_0 = -4000.0,//Cargo
+                             ELEVATOR_POS_1 = 400000.0,//Rocket Low
+                             ELEVATOR_POS_2 = 400000.0,//Rocket Mid
+                             ELEVATOR_POS_3 = 400000.0,//Rocket High
+                             ELEVATOR_POS_4 = 1080000.0,//Rocket High
+                             ELEVATOR_POS_5 = 1170000.0;//Rocket High
 
   //Shooter Speeds Percentage
   public static final double SHOOTER_SPEED_PERCENTAGE_0 = 0,
@@ -31,14 +31,14 @@ public class RobotMap {
   //Shooter Speeds
   public static final double SHOOTER_SPEED_0 = 0,
                              SHOOTER_SPEED_1 = 6000,
-                             SHOOTER_SPEED_2 = 7000,
+                             SHOOTER_SPEED_2 = 6500,
                              SHOOTER_SPEED_3 = 8000;
 
   //PID Constants
   public static final double MECANUM_STRAIGHT_DRIVE_P = 0.023,
                              ELEVATOR_F = 0,
-                             ELEVATOR_P = 0.01,
-                             ELEVATOR_I = 0,
+                             ELEVATOR_P = 0.0075,
+                             ELEVATOR_I = 0.00001,
                              ELEVATOR_D = 0,
                              SHOOTER_F = 0.0575,//tune F and then P/D to get good control.
                              SHOOTER_P = 0.95,//0.11
@@ -71,14 +71,15 @@ public class RobotMap {
                           INDEXER_TOP_VICTOR_PORT = 3,
                           ELEVATOR_MASTER_TALON_PORT = 1,
                           ELEVATOR_SLAVE_TALON_PORT = 2,
-                          SHOOTER_TALON_PORT = 2;
+                          SHOOTER_TALON_PORT = 3;
 
   //PCM 1 Ports
   public static final int DROPDOWN_SOLENOID_PORT = 1,
                           FROMT_CLIMBER_SOLENOID_PORT = 2,
                           BACK_CLIMBER_SOLENOID_PORT = 3,
-                          GRABBER_SOLENOID_PORT = 4,
-                          ARM_SOLENOID_PORT = 5;
+                          ARM_SOLENOID_PORT = 4,
+                          GRABBER_SOLENOID_PORT = 5;
+                          
 
 
   //PCM 2 Ports

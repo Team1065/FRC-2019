@@ -29,10 +29,10 @@ public class LEDControl extends Command {
 
     if(Robot.m_cargoHandler.isCargoDetected()){
         double timeDecimal = Timer.getFPGATimestamp() % 1.0;
-        if(Robot.m_elevator.getBottomLimit()){ // TODO: change to shooter at speed
+        if(Robot.m_cargoHandler.isShooterUpToSpeed()){ // TODO: change to shooter at speed
             cargoLedState = true;
         }
-        else if( Robot.m_cargoHandler.isCargoDetected() && (timeDecimal < 0.25 || (timeDecimal > 0.5 && timeDecimal < 0.75)) ){
+        else if(Robot.m_cargoHandler.isCargoDetected() && (timeDecimal < 0.25 || (timeDecimal > 0.5 && timeDecimal < 0.75)) ){
             cargoLedState = true;
         }
     }

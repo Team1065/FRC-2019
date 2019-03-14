@@ -7,7 +7,34 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 public class RightRocket extends CommandGroup {
 
     public RightRocket() {
-		addSequential(new DriveToDistance(.9, 65, 15));
+		
+		addSequential(new DriveToDistance(-.9, 50, 15));
+
+		addSequential(new RotateToAngle(.7, -75, 15));
+		addParallel(new AutoArmControl(true, false)); // Raise arm
+
+		addSequential(new DriveToDistance(-.9, 90, 15));
+		addSequential(new DriveForTime(0,0,0.5));
+		addParallel(new AutoArmControl(true, true)); // Deploy hatch
+
+		addSequential(new DriveToDistance(.9, 35, 15));
+		addParallel(new AutoArmControl(false, true)); // Drop arm
+
+		addSequential(new RotateToAngle(.7, 90, 15));
+
+		addSequential(new DriveToDistance(-.9, 65, 15));
+		//addSequential(new DriveForTime(0,0,0.5));
+		//addParallel(new AutoArmControl(false, false)); // Grab hatch
+
+		//addSequential(new DriveToDistance(.9, 50, 15));
+
+		//addSequential(new RotateToAngle(.7, -90, 15));
+		
+		//addSequential(new DriveToDistance(-.9, 40, 15));
+		
+		
+		
+		/*addSequential(new DriveToDistance(.9, 65, 15));
 
 		addSequential(new RotateToAngle(.7, -90, 15));
 
@@ -23,8 +50,9 @@ public class RightRocket extends CommandGroup {
 		addSequential(new DriveToDistance(.7, 30, 15));
 
 		addSequential(new RotateToAngle(.7, -90, 15));
+		addParallel(new AutoArmControl(false, true));
 
-		addSequential(new DriveToDistance(-.9, 150, 15));
+		addSequential(new DriveToDistance(-.9, 150, 15));*/
 		//maybe just stop short and wait for the drivers to pick up the hatch so we dont break the grabber if we are misaligned
 
 		//take new panel

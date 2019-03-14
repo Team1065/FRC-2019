@@ -7,7 +7,27 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 public class LeftRocket extends CommandGroup {
 
     public LeftRocket() {
-		addSequential(new DriveToDistance(.9, 65, 15));
+
+		addSequential(new DriveToDistance(-.7, 105, 15));
+		addSequential(new DriveForTime(0,0,0.5));  // Deploy Panel
+		addParallel(new AutoArmControl(false, true));
+
+		addSequential(new DriveToDistance(.7, 10, 15));
+		//addSequential(new DriveForTime(0,0,0.5));
+		
+
+		addSequential(new RotateToAngle(.65, 125, 15));
+		//addSequential(new DriveForTime(0,0,0.5));
+		addParallel(new AutoArmControl(false, false));
+
+		addSequential(new DriveToDistance(-.8, 105, 15));
+		//addSequential(new DriveForTime(0,0,0.5));
+
+		addSequential(new RotateToAngle(.65, 180, 15));
+		//addSequential(new DriveForTime(0,0,0.5));
+		addParallel(new AutoArmControl(false, true));
+
+		/*addSequential(new DriveToDistance(.9, 65, 15));
 
 		addSequential(new RotateToAngle(.7, 90, 15));
 
@@ -24,7 +44,7 @@ public class LeftRocket extends CommandGroup {
 
 		addSequential(new RotateToAngle(.7, 90, 15));
 
-		addSequential(new DriveToDistance(-.9, 150, 15));
+		addSequential(new DriveToDistance(-.9, 150, 15));*/
 		//maybe just stop short and wait for the drivers to pick up the hatch so we dont break the grabber if we are misaligned
 
 		//take new panel

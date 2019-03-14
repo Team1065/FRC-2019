@@ -84,6 +84,8 @@ public class Robot extends TimedRobot {
     m_climber.updateStatus();
     m_vision.updateStatus();
     m_lighting.updateStatus();
+    SmartDashboard.putBoolean("[AM] Mode", m_autoModeSwitch.get());
+    SmartDashboard.putBoolean("[AM] side", m_autoSideSwitch.get());
   }
 
   /**
@@ -139,6 +141,9 @@ public class Robot extends TimedRobot {
       else if (!m_autoModeSwitch.get() & !m_autoSideSwitch.get()){ // Left Cargo
         m_autonomousCommand = new LeftCargo();
       }
+
+      m_autonomousCommand = new RightCargo();
+      
       m_autonomousCommand.start();
   }
 
