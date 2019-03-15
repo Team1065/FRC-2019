@@ -25,7 +25,7 @@ public class Lights extends Subsystem {
         m_LED3 = new Solenoid(1, RobotMap.LED3_PORT);
         m_LED4 = new Solenoid(1, RobotMap.LED4_PORT);
 
-        lineSensor = new DigitalInput(RobotMap.LINE_SENSOR_PORT);
+        lineSensor = new DigitalInput(RobotMap.FRONT_LINE_SENSOR_PORT);
     }
 
     @Override

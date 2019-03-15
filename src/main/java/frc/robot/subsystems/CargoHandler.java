@@ -124,7 +124,7 @@ public class CargoHandler extends Subsystem {
   }
 
   public boolean isShooterUpToSpeed(){
-    return shooter.getClosedLoopError(0) < RobotMap.ELEVATOR_ERROR;
+    return shooter.getClosedLoopError(0) < RobotMap.SHOOTER_ERROR;
   }
 
   public void setIntake(double speed){

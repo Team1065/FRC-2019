@@ -6,11 +6,11 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 public class RightCargo extends CommandGroup {
 
     public RightCargo() {
-		addSequential(new DriveToDistance(-.7, 115, 15));
-		addSequential(new DriveForTime(0,0,0.5));  // Deploy Panel
+		addSequential(new DriveToDistance(-.60, 110, 15));
+		addSequential(new DriveForTime(-.3, -.3, 1.5));  // Deploy Panel
 		addParallel(new AutoArmControl(false, true));
 
-		addSequential(new DriveToDistance(.7, 10, 15));
+		addSequential(new DriveToDistance(.7, 13, 15));
 		//addSequential(new DriveForTime(0,0,0.5));
 		
 
@@ -18,14 +18,22 @@ public class RightCargo extends CommandGroup {
 		//addSequential(new DriveForTime(0,0,0.5));
 		addParallel(new AutoArmControl(false, false));
 
-		addSequential(new DriveToDistance(-.75, 95, 15));
+		addSequential(new DriveToDistance(-.75, 105, 15));
 		//addSequential(new DriveForTime(0,0,0.5));
 
 		addSequential(new RotateToAngle(.65, 180, 15));
 		//addSequential(new DriveForTime(0,0,0.5));
 		addParallel(new AutoArmControl(false, true));
 
-		addSequential(new DriveToDistance(-.7, 40, 15));
+		addSequential(new DriveToDistance(-.6, 60, 15));
+
+		addSequential(new DriveForTime(-0.3, -0.3, 1.5));
+		addParallel(new AutoArmControl(false, false));
+
+		addSequential(new DriveToDistance(.8, 70, 15));
+		//addParallel(new AutoArmControl(false, false));
+		//addSequential(new DriveForTime(0, 0, 0.5));
+		//addParallel(new AutoArmControl(false, false));
 
 		//maybe just stop short and wait for the drivers to pick up the hatch so we dont break the grabber if we are misaligned
 

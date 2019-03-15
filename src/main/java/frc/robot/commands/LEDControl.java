@@ -32,7 +32,7 @@ public class LEDControl extends Command {
         if(Robot.m_cargoHandler.isShooterUpToSpeed()){ // TODO: change to shooter at speed
             cargoLedState = true;
         }
-        else if(Robot.m_cargoHandler.isCargoDetected() && (timeDecimal < 0.25 || (timeDecimal > 0.5 && timeDecimal < 0.75)) ){
+        else if((timeDecimal < 0.25 || (timeDecimal > 0.5 && timeDecimal < 0.75)) ){
             cargoLedState = true;
         }
     }

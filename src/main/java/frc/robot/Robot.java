@@ -57,7 +57,7 @@ public class Robot extends TimedRobot {
     m_oi = new OI();
     m_driveTrain = new DriveTrain();
     m_cargoHandler = new CargoHandler();
-    m_elevator = new Elevator();
+    //m_elevator = new Elevator();
     m_climber = new Climber();
     m_arm = new Arm();
     m_compressor = new Compressor();
@@ -78,14 +78,14 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void robotPeriodic() {
-    m_driveTrain.updateStatus();
+    //m_driveTrain.updateStatus();
     m_cargoHandler.updateStatus();
-    m_elevator.updateStatus();
-    m_climber.updateStatus();
-    m_vision.updateStatus();
-    m_lighting.updateStatus();
-    SmartDashboard.putBoolean("[AM] Mode", m_autoModeSwitch.get());
-    SmartDashboard.putBoolean("[AM] side", m_autoSideSwitch.get());
+    //m_elevator.updateStatus();
+    //m_climber.updateStatus();
+    //m_vision.updateStatus();
+    //m_lighting.updateStatus();
+    //SmartDashboard.putBoolean("[AM] Mode", m_autoModeSwitch.get());
+    //SmartDashboard.putBoolean("[AM] side", m_autoSideSwitch.get());
   }
 
   /**

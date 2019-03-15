@@ -41,7 +41,7 @@ public class VisionSystem extends Subsystem {
 
   public void update(){
       if(getState() == State.FRONT_VIEW){
-          setMount(0);
+          setMount(1);
       }else if (getState() == State.RIGHT_VIEW){
           setMount(0.35);
       }else if(getState() == State.BACK_VIEW){

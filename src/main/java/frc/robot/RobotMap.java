@@ -30,9 +30,9 @@ public class RobotMap {
 
   //Shooter Speeds
   public static final double SHOOTER_SPEED_0 = 0,
-                             SHOOTER_SPEED_1 = 6000,
-                             SHOOTER_SPEED_2 = 6500,
-                             SHOOTER_SPEED_3 = 8000;
+                             SHOOTER_SPEED_1 = 5500,
+                             SHOOTER_SPEED_2 = 6000,
+                             SHOOTER_SPEED_3 = 6500;
 
   //PID Constants
   public static final double MECANUM_STRAIGHT_DRIVE_P = 0.023,
@@ -74,10 +74,7 @@ public class RobotMap {
                           SHOOTER_TALON_PORT = 3;
 
   //PCM 1 Ports
-  public static final int DROPDOWN_SOLENOID_PORT = 1,
-                          FROMT_CLIMBER_SOLENOID_PORT = 2,
-                          BACK_CLIMBER_SOLENOID_PORT = 3,
-                          ARM_SOLENOID_PORT = 4,
+  public static final int ARM_SOLENOID_PORT = 4,
                           GRABBER_SOLENOID_PORT = 5;
                           
 
@@ -86,7 +83,11 @@ public class RobotMap {
   public static final int CARGO_LED_PORT = 0,
                           LED2_PORT = 1,
                           LED3_PORT = 2,
-                          LED4_PORT = 3;
+                          LED4_PORT = 3,
+                          DROPDOWN_SOLENOID_PORT = 4,
+                          BACK_CLIMBER_SOLENOID_PORT = 5,
+                          FROMT_CLIMBER_SOLENOID_PORT = 6;
+                         
                           
 
   //Digital Ports
@@ -95,9 +96,11 @@ public class RobotMap {
                           CARGO_SWITCH_PORT = 2,
                           ELEVATOR_BOTTOM_LIMIT_PORT = 3,
                           ELEVATOR_TOP_LIMIT_PORT = 4,
-                          AUTO_SIDE_SWITCH_PORT = 5, // On = Right Off = Left
-                          AUTO_MODE_SWITCH_PORT = 6, // On = rocket Off = Cargo
-                          LINE_SENSOR_PORT = 7; 
+                          //SIDE_LINE_SENSOR_PORT = 5,
+                          //BACK_LINE_SENSOR_PORT = 6,
+                          AUTO_SIDE_SWITCH_PORT = 7, // On = Right Off = Left
+                          AUTO_MODE_SWITCH_PORT = 8, // On = rocket Off = Cargo
+                          FRONT_LINE_SENSOR_PORT = 9; 
 
   //OI
   public static final int LEFT_JOYSTICK_PORT = 0,					//usb
