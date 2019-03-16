@@ -62,13 +62,13 @@ public class RobotMap {
                           RIGHT_FRONT_DRIVE_MOTOR_PORT = 1,
                           LEFT_BACK_DRIVE_MOTOR_PORT = 2,
                           RIGHT_BACK_DRIVE_MOTOR_PORT = 3,
-                          CLIMBER_MOTOR_PORT = 4,
+                          //CLIMBER_MOTOR_PORT = 4,
                           CAMERA_SERVO_PORT = 5;
 
  //CAN Ports
   public static final int INTAKE_VICTOR_PORT = 1,
                           INDEXER_MID_VICTOR_PORT = 2,
-                          INDEXER_TOP_VICTOR_PORT = 3,
+                          CLIMBER_VICTOR_PORT = 3,
                           ELEVATOR_MASTER_TALON_PORT = 1,
                           ELEVATOR_SLAVE_TALON_PORT = 2,
                           SHOOTER_TALON_PORT = 3;
