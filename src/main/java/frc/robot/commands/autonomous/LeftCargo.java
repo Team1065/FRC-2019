@@ -6,22 +6,21 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 public class LeftCargo extends CommandGroup {
 
     public LeftCargo() {
-    	addSequential(new DriveToDistance(-.6, 110, 15));
-		addSequential(new DriveForTime(-.3,-.3,1.5));  // Deploy Panel
+    	addSequential(new DriveToDistance(-.60, 110, 15));
+		addSequential(new DriveForTime(-.3, -.3, 1.5));  // Deploy Panel
 		addParallel(new AutoArmControl(false, true));
 
 		addSequential(new DriveToDistance(.7, 13, 15));
 		//addSequential(new DriveForTime(0,0,0.5));
 		
 
-		addSequential(new RotateToAngle(.65, -125, 15));
+		addSequential(new RotateToAngle(.65,-125, 15));
 		//addSequential(new DriveForTime(0,0,0.5));
 		addParallel(new AutoArmControl(false, false));
 
-		addSequential(new DriveToDistance(-.75, 102, 15));
+		addSequential(new DriveToDistance(-.75, 100, 15));
 		//addSequential(new DriveForTime(0,0,0.5));
-
-		addSequential(new RotateToAngle(.65, -180, 15));
+		addSequential(new RotateToAngle(.55,-180, 15));
 		//addSequential(new DriveForTime(0,0,0.5));
 		addParallel(new AutoArmControl(false, true));
 
@@ -30,7 +29,7 @@ public class LeftCargo extends CommandGroup {
 		addSequential(new DriveForTime(-0.3, -0.3, 1.5));
 		addParallel(new AutoArmControl(false, false));
 
-		addSequential(new DriveToDistance(.8, 70, 02));
+		addSequential(new DriveToDistance(.8, 70, 15));
 
 		//maybe just stop short and wait for the drivers to pick up the hatch so we dont break the grabber if we are misaligned
 

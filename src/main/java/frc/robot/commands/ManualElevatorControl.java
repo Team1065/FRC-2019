@@ -24,19 +24,24 @@ public class ManualElevatorControl extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    if(Robot.m_oi.getElevatorOverride()){
-      
-      double ElevatorStickY = Robot.m_oi.getElevatorStickY();
-        
-        if(Math.abs(ElevatorStickY - RobotMap.ELEVATOR_JOYSTICK_MIDDLE) > RobotMap.ELEVATOR_JOYSTICK_DEADBAND){
-          Robot.m_elevator.setVoltage((ElevatorStickY - RobotMap.ELEVATOR_JOYSTICK_MIDDLE)/RobotMap.ELEVATOR_JOYSTICK_MIDDLE);
-        }
-        else {
-          Robot.m_elevator.setVoltage(0);
-        }
+    if(Robot.m_oi.getClimberExtend()){
+      Robot.m_elevator.setVoltage(-0.5);
     }
     else{
-      Robot.m_elevator.setPosition(Robot.m_oi.getElevatorDesiredPosition());
+      if(Robot.m_oi.getElevatorOverride()){
+        
+        double ElevatorStickY = Robot.m_oi.getElevatorStickY();
+          
+          if(Math.abs(ElevatorStickY - RobotMap.ELEVATOR_JOYSTICK_MIDDLE) > RobotMap.ELEVATOR_JOYSTICK_DEADBAND){
+            Robot.m_elevator.setVoltage((ElevatorStickY - RobotMap.ELEVATOR_JOYSTICK_MIDDLE)/RobotMap.ELEVATOR_JOYSTICK_MIDDLE);
+          }
+          else {
+            Robot.m_elevator.setVoltage(0);
+          }
+      }
+      else{
+        Robot.m_elevator.setPosition(Robot.m_oi.getElevatorDesiredPosition());
+      }
     }
   }
 
