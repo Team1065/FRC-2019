@@ -42,7 +42,7 @@ public class ManualClimberControl extends Command {
     }
     
     boolean currentState;
-    currentState = Robot.m_oi.getLeftJoystickTopMiddle() && Robot.m_oi.getLeftJoystickTrigger();
+    currentState = Robot.m_oi.getLeftJoystick11Button() && Robot.m_oi.getLeftJoystickTrigger();
 
     if(currentState == true && previousState == false){
       wantedFrontstate = !wantedFrontstate;

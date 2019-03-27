@@ -20,7 +20,7 @@ import frc.robot.commands.ManualElevatorControl;
 
 public class Elevator extends Subsystem {
   private TalonSRX masterTalon, slaveTalon;
-  //private VictorSPX slaveTalon;
+  //private VictorSPX slaveTalon;//TODO: comment out on comp robot and use talonsrx
   private DigitalInput bottomLimit, topLimit;
 
   public Elevator (){
@@ -29,18 +29,18 @@ public class Elevator extends Subsystem {
 
     masterTalon = new TalonSRX(RobotMap.ELEVATOR_MASTER_TALON_PORT);
     slaveTalon = new TalonSRX(RobotMap.ELEVATOR_SLAVE_TALON_PORT);
-    //slaveTalon = new VictorSPX(4);
+    //slaveTalon = new VictorSPX(4);//TODO: comment out on comp robot and use talonsrx
 
     slaveTalon.follow(masterTalon);
-		slaveTalon.setInverted(true);
+		slaveTalon.setInverted(false);
 		slaveTalon.configNominalOutputForward(0.0, 0);
 		slaveTalon.configNominalOutputReverse(-0.0, 0);
 		slaveTalon.configPeakOutputForward(1, 0);
 		slaveTalon.configPeakOutputReverse(-1, 0);
 
     masterTalon.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative, 0, 0);
-		masterTalon.setSensorPhase(false);
-		masterTalon.setInverted(true);
+		masterTalon.setSensorPhase(true);
+		masterTalon.setInverted(false);
 		masterTalon.configNominalOutputForward(0.0, 0);
 		masterTalon.configNominalOutputReverse(-0.0, 0);
 		masterTalon.configPeakOutputForward(1, 0);
@@ -63,8 +63,8 @@ public class Elevator extends Subsystem {
   public void setPosition(double position) {
     //assume normally open switches
     if(position < masterTalon.getSelectedSensorPosition(0) && !bottomLimit.get()) {
-      masterTalon.set(ControlMode.PercentOutput, 0);
       masterTalon.setSelectedSensorPosition(0, 0, 0);
+      masterTalon.set(ControlMode.PercentOutput, 0);
     }
     else if (position > masterTalon.getSelectedSensorPosition(0) && !topLimit.get()) {
       masterTalon.set(ControlMode.PercentOutput, 0);

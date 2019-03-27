@@ -78,6 +78,10 @@ public class OI {
     public boolean getLeftJoystickTopMiddle(){
     	return leftJoystick.getRawButton(3);
     }
+
+    public boolean getLeftJoystick11Button(){
+        return leftJoystick.getRawButton(10);
+    }
     
     public boolean getCompressorOverride(){
     	return enhancedDS.getRawButton(RobotMap.COMPRESSOR_CONTROL_OVERRIDE);
