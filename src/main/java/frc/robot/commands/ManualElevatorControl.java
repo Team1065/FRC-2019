@@ -25,7 +25,7 @@ public class ManualElevatorControl extends Command {
   @Override
   protected void execute() {
     if(Robot.m_oi.getClimberExtend()){
-      Robot.m_elevator.setVoltage(-0.5);//tune
+      Robot.m_elevator.setVoltage(-0.3);//tune
     }
     else{
       if(Robot.m_oi.getElevatorOverride()){

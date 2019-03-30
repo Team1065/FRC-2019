@@ -18,7 +18,7 @@ public class RightCargo extends CommandGroup {
 		//addSequential(new DriveForTime(0,0,0.5));
 		addParallel(new AutoArmControl(false, false));
 
-		addSequential(new DriveToDistance(-.75, 100, 15));
+		addSequential(new DriveToDistance(-.75, 102, 15));
 		//addSequential(new DriveForTime(0,0,0.5));
 		addSequential(new RotateToAngle(.55, 180, 15));
 		//addSequential(new DriveForTime(0,0,0.5));

@@ -16,11 +16,11 @@ package frc.robot;
 public class RobotMap {
   //Elevator positions
   public static final double ELEVATOR_POS_0 = 0.0,//Rocket Low and cargo side
-                             ELEVATOR_POS_1 = 11000.0,//Cargo front
-                             ELEVATOR_POS_2 = 27300.0,//Rocket Mid
-                             ELEVATOR_POS_3 = 27300.0,//Rocket High
-                             ELEVATOR_POS_4 = 27300.0,//Rocket High
-                             ELEVATOR_POS_5 = 27300.0;//Rocket High
+                             ELEVATOR_POS_1 = 11300.0,//Cargo front
+                             ELEVATOR_POS_2 = 27500.0,//Rocket Mid
+                             ELEVATOR_POS_3 = 27500.0,//Rocket High
+                             ELEVATOR_POS_4 = 27500.0,//Rocket High
+                             ELEVATOR_POS_5 = 27500.0;//Rocket High
 
   //Shooter Speeds Percentage
   public static final double SHOOTER_SPEED_PERCENTAGE_0 = 0,
@@ -75,7 +75,8 @@ public class RobotMap {
 
   //PCM 1 Ports
   public static final int ARM_SOLENOID_PORT = 4,
-                          GRABBER_SOLENOID_PORT = 5;
+                          GRABBER_SOLENOID_PORT = 5,
+                          FRONT_CLIMBER_SOLENOID_PORT = 6;
                           
 
 
@@ -85,8 +86,7 @@ public class RobotMap {
                           LED3_PORT = 2,
                           LED4_PORT = 3,
                           DROPDOWN_SOLENOID_PORT = 4,
-                          BACK_CLIMBER_SOLENOID_PORT = 5,
-                          FROMT_CLIMBER_SOLENOID_PORT = 6;
+                          BACK_CLIMBER_SOLENOID_PORT = 5;
                          
                           
 

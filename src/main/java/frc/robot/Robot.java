@@ -78,12 +78,12 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void robotPeriodic() {
-    m_driveTrain.updateStatus();
-    m_cargoHandler.updateStatus();
-    m_elevator.updateStatus();
-    m_climber.updateStatus();
-    m_vision.updateStatus();
-    m_lighting.updateStatus();
+    //m_driveTrain.updateStatus();
+    //m_cargoHandler.updateStatus();
+    //m_elevator.updateStatus();
+    //m_climber.updateStatus();
+    //m_vision.updateStatus();
+    //m_lighting.updateStatus();
     //SmartDashboard.putBoolean("[AM] Mode", m_autoModeSwitch.get());
     //SmartDashboard.putBoolean("[AM] side", m_autoSideSwitch.get());
   }
