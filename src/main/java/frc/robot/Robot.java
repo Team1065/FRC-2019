@@ -58,7 +58,7 @@ public class Robot extends TimedRobot {
     m_driveTrain = new DriveTrain();
     m_cargoHandler = new CargoHandler();
     m_elevator = new Elevator();
-    m_climber = new Climber();
+    //m_climber = new Climber();
     m_arm = new Arm();
     m_compressor = new Compressor();
     m_lighting = new Lights();
